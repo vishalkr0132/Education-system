@@ -133,3 +133,16 @@ def admin_course_detail(request):
         return redirect('/')
     else:
         return render(request,'admin-course-detail.html')
+
+def instructor_create_course(request):
+    if request.user.is_anonymous:
+        return redirect('/')
+    else:
+        return render(request,'instructor-create-course.html')
+
+def admin_edit_course_detail(request):
+    if request.user.is_anonymous:
+        return redirect('/')
+    else:
+        return render(request,'admin-edit-course-detail.html')
+

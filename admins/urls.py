@@ -15,6 +15,8 @@ urlpatterns = [
     path('admin_course_list',views.admin_course_list, name='admin_course_list'),
     path("admin_course_category",views.admin_course_category, name='admin_course_category'),
     path('admin_course_detail',views.admin_course_detail, name='admin_course_detail'),
+    path('instructor_create_course',views.instructor_create_course, name='instructor_create_course'),
+    path('admin_edit_course_detail',views.admin_edit_course_detail, name='admin_edit_course_detail'),
     path('logout/', logout_view, name='logout'),
     
 ]

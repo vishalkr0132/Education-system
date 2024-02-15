@@ -121,3 +121,15 @@ def admin_course_list(request):
         return redirect('/')
     else:
         return render(request,'admin-course-list.html')
+
+def admin_course_category(request):
+    if request.user.is_anonymous:
+        return redirect('/')
+    else:
+        return render(request,'admin-course-category.html')
+    
+def admin_course_detail(request):
+    if request.user.is_anonymous:
+        return redirect('/')
+    else:
+        return render(request,'admin-course-detail.html')

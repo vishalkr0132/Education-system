@@ -165,7 +165,7 @@
 							<p class="lead mb-4">Nice to see you! Please log in with your account.</p>
 							
 							<p>
-									{% comment %} {% if messages %}
+								{% if messages %}
 									{% for message in messages %}
 										{% if message.tags == 'success' %}
 											<p class="success-message">{{ message }}</p>
@@ -180,7 +180,7 @@
 											<p class="error-message">{{ message }}</p>
 										{% endif %}
 									{% endfor %}
-								{% endif %} {% endcomment %}
+								{% endif %} 
 							</P>
 							<!-- Form START -->
 							<form action=" " method="POST">

@@ -10,7 +10,20 @@ from django.contrib.auth.models import Group
 # Create your views here.
 
 def loginuser(request):
-    return render(request,'sign-in.html')
+    if request.method == 'POST':
+        username = request.POST.get('Email')
+        password = request.POST.get('Password')
+        
+        user = authenticate(username=username, password=password)
+        if user is not None and user.is_superuser:
+            login(request, user)
+            messages.error(request, 'You do not belong to any user.')
+            return redirect('/admins/') 
+        else:
+            messages.error(request, 'Username and Password are incorrect.')
+            return redirect('/') 
+    else:
+        return render(request, 'sign-in.html')
 
 def student_sign_in(request):
     return render(request,'student-sign-in.html')

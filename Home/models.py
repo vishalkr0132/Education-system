@@ -38,3 +38,18 @@ class colleges_sign_up(models.Model):
     def __str__(self):
         return self.Email
     
+class instructors_sign_up(models.Model):
+    id = models.AutoField(primary_key=True)
+    created_at = models.DateTimeField(default=timezone.now)
+    updated_at = models.DateTimeField(default=timezone.now)
+    Full_Name = models.CharField(max_length=255)
+    Phone = models.CharField(max_length=12)
+    Email = models.EmailField(max_length=255)
+    Password = models.CharField(max_length=255)
+    
+    def save(self, *args, **kwargs):
+        self.updated_at = timezone.now()
+        super(instructors_sign_up, self).save(*args, **kwargs)
+    
+    def __str__(self):
+        return self.Email

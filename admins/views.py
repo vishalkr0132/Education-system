@@ -147,3 +147,8 @@ def admin_edit_course_detail(request):
     else:
         return render(request,'admin-edit-course-detail.html')
 
+def admin_college_list(request):
+    if request.user.is_anonymous:
+        return redirect('/')
+    else:
+        return render(request,'admin-college-list.html')

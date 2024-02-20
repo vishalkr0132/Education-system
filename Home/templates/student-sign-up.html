@@ -161,24 +161,28 @@
               <p class="lead mb-4">
                 Nice to see you! Please Sign up with your account.
               </p>
+              <!--Start Print Message-->
+              <p>
+                {% if messages %}
+                    {% for message in messages %}
+                        {% if message.tags == 'error' %}
+                            <p class="error-message">{{ message }}</p>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                </p>
+                <!--End Print Message-->
 
               <!-- Form START -->
-              <form method="post" enctype="multipart/form-data">
-                {% comment %} {% csrf_token %}
-                {% if messages %} {{ message.tags }}
-                <div class="alert alert-primary" role="alert">
-                  {% for message in messages %} {{ message }} {% endfor %}
-                </div>
-                {% endif %} {% endcomment %}
-
+              <form action="/student_sign_up"method="POST">
+                 {% csrf_token %}
                 <!-- First Name -->
                 <div class="mb-4">
                   <label for="exampleInputEmail1" class="form-label">First Name *</label>
                   <div class="input-group input-group-lg">
                     <span class="input-group-text bg-light rounded-start border-0 text-secondary px-3"><i
                         class="bi bi-person-circle"></i></span>
-                    <input type="text" class="form-control border-0 bg-light rounded-end ps-1" placeholder="First Name"
-                      required name="first_name" id="exampleInputEmail1" />
+                    <input type="text" class="form-control border-0 bg-light rounded-end ps-1" placeholder="First Name" required name="First_Name" id="exampleInputEmail1" />
                   </div>
                 </div>
                 <!-- Last Name -->
@@ -188,7 +192,7 @@
                     <span class="input-group-text bg-light rounded-start border-0 text-secondary px-3"><i
                         class="bi bi-person-circle"></i></span>
                     <input type="text" class="form-control border-0 bg-light rounded-end ps-1" placeholder="Last Name"
-                      name="last_name" id="exampleInputEmail1" />
+                      name="Last_Name" id="exampleInputEmail1" />
                   </div>
                 </div>
 
@@ -199,7 +203,7 @@
                     <span class="input-group-text bg-light rounded-start border-0 text-secondary px-3"><i
                         class="bi bi-envelope-fill"></i></span>
                     <input type="email" class="form-control border-0 bg-light rounded-end ps-1" placeholder="E-mail"
-                      required name="email" id="exampleInputEmail1" />
+                      required name="Email" id="exampleInputEmail1" />
                   </div>
                 </div>
                 <!-- Password -->
@@ -209,7 +213,7 @@
                     <span class="input-group-text bg-light rounded-start border-0 text-secondary px-3"><i
                         class="fas fa-lock"></i></span>
                     <input type="password" class="form-control border-0 bg-light rounded-end ps-1"
-                      placeholder="*********" name="password" id="inputPassword5" />
+                      placeholder="*********" name="Password" id="inputPassword5" />
                   </div>
                 </div>
 

@@ -156,13 +156,13 @@
                                 <p class="lead mb-4">Nice to see you! Please Sign up with your account.</p>
                                 <!--Start Print Message-->
                                 <p>
-                                {% comment %} {% if messages %}
+                                {% if messages %}
                                     {% for message in messages %}
                                         {% if message.tags == 'error' %}
                                             <p class="error-message">{{ message }}</p>
                                         {% endif %}
                                     {% endfor %}
-                                {% endif %} {% endcomment %}
+                                {% endif %}
                                 </p>
                                 <!--End Print Message-->
                                 <!-- Form START -->

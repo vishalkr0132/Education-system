@@ -163,7 +163,7 @@
 							<span class="mb-0 fs-1">👋</span>
 							<h1 class="fs-2">Login into Eduport!</h1>
 							<p class="lead mb-4">Nice to see you! Please log in with your account.</p>
-							
+							<!--Start Message-->
 							<p>
 								{% if messages %}
 									{% for message in messages %}
@@ -182,6 +182,7 @@
 									{% endfor %}
 								{% endif %} 
 							</P>
+							<!-- End Start Message-->
 							<!-- Form START -->
 							<form action=" " method="POST">
 								{% csrf_token %}

@@ -6,6 +6,6 @@ from .views import logout_view
 
 urlpatterns = [
     path('logout/', logout_view, name='logout'),
-    path('student_dashboard', views.student_dashboard, name='student_dashboard'),
+    path('', views.student_dashboard, name='student_dashboard'),
     path('admin_student_list', views.admin_student_list, name='admin_student_list'),
 ]

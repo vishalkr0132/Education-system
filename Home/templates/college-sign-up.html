@@ -1,35 +1,35 @@
-{% extends 'base.html' %} {% block start %} {% load static %}
+{% extends 'base.html' %}
+{% block start %}
+{% load static %}
 
 <!-- **************** MAIN CONTENT START **************** -->
 <main>
   <section
-    class="p-0 d-flex align-items-center position-relative overflow-hidden"
-  >
+    class="p-0 d-flex align-items-center position-relative overflow-hidden">
     <div class="container-fluid">
       <div class="row">
         <!-- left -->
         <div
-          class="col-12 col-lg-6 d-md-flex align-items-center justify-content-center bg-primary bg-opacity-10 vh-lg-100"
-        >
+          class="col-12 col-lg-6 d-md-flex align-items-center justify-content-center bg-primary bg-opacity-10 vh-lg-100">
           <div class="p-3 p-lg-5">
             <!-- Title -->
-             <!-- User Types-->
-             <h5>Select the user based on preference!</h5>
-             <div class="d-flex mb-2 flex-wrap">
-                 <button class="btn bg-warning" onclick="selectButton(1)">
-                     <a class="text-dark" href="student_sign_up">Student</a>
-                 </button>
-                 <button class="btn button" onclick="selectButton(2)">
-                     <a class="text-dark" href="college_sign_up">College </a>
-                 </button>
-                 <button class="btn button" onclick="selectButton(3)">
-                     <a class="text-dark" href="instructor_sign_up">Instructor</a>
-                 </button>
-                 <button class="btn button" onclick="selectButton(4)">
-                     <a class="text-dark" href="partners_sign_up">Partners</a>
-                 </button>
-             </div>
-         <!--End User Types-->
+            <!-- User Types-->
+            <h5>Select the user based on preference!</h5>
+            <div class="d-flex mb-2 flex-wrap">
+              <button class="btn bg-warning" onclick="selectButton(1)">
+                <a class="text-dark" href="student_sign_up">Student</a>
+              </button>
+              <button class="btn button" onclick="selectButton(2)">
+                <a class="text-dark" href="college_sign_up">College </a>
+              </button>
+              <button class="btn button" onclick="selectButton(3)">
+                <a class="text-dark" href="instructor_sign_up">Instructor</a>
+              </button>
+              <button class="btn button" onclick="selectButton(4)">
+                <a class="text-dark" href="partners_sign_up">Partners</a>
+              </button>
+            </div>
+            <!--End User Types-->
 
             <div class="text-center">
               <h2 class="fw-bold">Welcome to our largest community</h2>
@@ -39,40 +39,34 @@
             <img
               src="{% static 'assets/images/element/02.svg' %}"
               class="mt-5"
-              alt=""
-            />
+              alt />
             <!-- Info -->
             <div
-              class="d-sm-flex mt-5 align-items-center justify-content-center"
-            >
+              class="d-sm-flex mt-5 align-items-center justify-content-center">
               <ul class="avatar-group mb-2 mb-sm-0">
                 <li class="avatar avatar-sm">
                   <img
                     class="avatar-img rounded-circle"
                     src="{% static 'docs/assets/images/avatar/01.jpg' %}"
-                    alt="avatar"
-                  />
+                    alt="avatar" />
                 </li>
                 <li class="avatar avatar-sm">
                   <img
                     class="avatar-img rounded-circle"
                     src="{% static 'docs/assets/images/avatar/02.jpg' %}"
-                    alt="avatar"
-                  />
+                    alt="avatar" />
                 </li>
                 <li class="avatar avatar-sm">
                   <img
                     class="avatar-img rounded-circle"
                     src="{% static 'docs/assets/images/avatar/03.jpg' %}"
-                    alt="avatar"
-                  />
+                    alt="avatar" />
                 </li>
                 <li class="avatar avatar-sm">
                   <img
                     class="avatar-img rounded-circle"
                     src="{% static 'docs/assets/images/avatar/04.jpg' %}"
-                    alt="avatar"
-                  />
+                    alt="avatar" />
                 </li>
               </ul>
               <!-- Content -->
@@ -91,142 +85,108 @@
               <img
                 src="{% static 'docs/assets/images/element/03.svg' %}"
                 class="h-40px mb-2"
-                alt=""
-              />
+                alt />
               <h2>Sign up for your account!</h2>
               <p class="lead mb-4">
                 Nice to see you! Please Sign up with your account.
               </p>
 
               <!-- Form START -->
-              <form method="post" enctype="multipart/form-data">
-                {% csrf_token %} {% if messages %} {{ message.tags }}
-                <div class="alert alert-primary" role="alert">
-                  {% for message in messages %} {{ message }} {% endfor %}
-                </div>
-                {% endif %}
-
-                <!-- First Name -->
+              <form action="college_sign_up" method="POST">
+                {% csrf_token %}
+                <!-- College Name -->
                 <div class="mb-4">
-                  <label for="exampleInputEmail1" class="form-label"
-                    >College Name *</label
-                  >
+                  <label for="exampleInputEmail1" class="form-label">College
+                    Name *</label>
                   <div class="input-group input-group-lg">
                     <span
-                      class="input-group-text bg-light rounded-start border-0 text-secondary px-3"
-                      ><i class="bi bi-person-circle"></i
-                    ></span>
-                    <input
-                      type="text"
+                      class="input-group-text bg-light rounded-start border-0 text-secondary px-3"><i
+                        class="bi bi-person-circle"></i></span>
+                    <input type="text"
                       class="form-control border-0 bg-light rounded-end ps-1"
-                      placeholder="College Name"
-                      required
-                      name="CollegeName"
-                      id="exampleInputEmail1"
-                    />
+                      placeholder="College Name" required
+                      name="College_Name" id="exampleInputEmail1" />
                   </div>
                 </div>
-                <!-- Last Name -->
+                <!-- College Code -->
                 <div class="mb-4">
-                  <label for="exampleInputEmail1" class="form-label"
-                    >College Code *</label
-                  >
+                  <label for="exampleInputEmail1" class="form-label">College
+                    Code *</label>
                   <div class="input-group input-group-lg">
                     <span
-                      class="input-group-text bg-light rounded-start border-0 text-secondary px-3"
-                      ><i class="bi bi-person-circle"></i
-                    ></span>
-                    <input
-                      type="text"
+                      class="input-group-text bg-light rounded-start border-0 text-secondary px-3"><i
+                        class="bi bi-person-circle"></i></span>
+                    <input type="text"
                       class="form-control border-0 bg-light rounded-end ps-1"
                       placeholder="College Code"
-                      name="CollegeCode"
-                      required
-                      id="exampleInputEmail1"
-                    />
+                      name="College_Code" required id="exampleInputEmail1" />
                   </div>
                 </div>
-
                 <!-- adminAdministrator -->
                 <div class="mb-4">
-                  <label for="exampleInputEmail1" class="form-label"
-                    >adminAdministrator *</label
-                  >
+                  <label for="exampleInputEmail1"
+                    class="form-label">Admin Administrator *</label>
                   <div class="input-group input-group-lg">
                     <span
-                      class="input-group-text bg-light rounded-start border-0 text-secondary px-3"
-                      ><i class="bi bi-person-circle"></i
-                    ></span>
-                    <input
-                      type="text"
+                      class="input-group-text bg-light rounded-start border-0 text-secondary px-3"><i
+                        class="bi bi-person-circle"></i></span>
+                    <input type="text"
                       class="form-control border-0 bg-light rounded-end ps-1"
-                      placeholder="adminAdministrator"
-                      name="adminAdministrator"
-                      required
-                      id="exampleInputEmail1"
-                    />
+                      placeholder="Admin Administrator"
+                      name="Admin_Administrator" required
+                      id="exampleInputEmail1" />
                   </div>
                 </div>
-
                 <!-- phone -->
                 <div class="mb-4">
-                  <label for="exampleInputEmail1" class="form-label"
-                    >Phone *</label
-                  >
+                  <label for="exampleInputEmail1" class="form-label">Phone
+                    *</label>
                   <div class="input-group input-group-lg">
                     <span
-                      class="input-group-text bg-light rounded-start border-0 text-secondary px-3"
-                      ><i class="bi bi-person-circle"></i
-                    ></span>
+                      class="input-group-text bg-light rounded-start border-0 text-secondary px-3"><i
+                        class="bi bi-person-circle"></i></span>
                     <input
                       type="tel"
                       class="form-control border-0 bg-light rounded-end ps-1"
                       placeholder="Phone"
-                      name="phone"
+                      name="Phone"
                       required
-                      id="exampleInputEmail1"
-                    />
+                      id="exampleInputEmail1" />
                   </div>
                 </div>
 
                 <!-- Email -->
                 <div class="mb-4">
-                  <label for="exampleInputEmail1" class="form-label"
-                    >Email *</label
-                  >
+                  <label for="exampleInputEmail1" class="form-label">Email
+                    *</label>
                   <div class="input-group input-group-lg">
                     <span
-                      class="input-group-text bg-light rounded-start border-0 text-secondary px-3"
-                      ><i class="bi bi-envelope-fill"></i
-                    ></span>
+                      class="input-group-text bg-light rounded-start border-0 text-secondary px-3"><i
+                        class="bi bi-envelope-fill"></i></span>
                     <input
                       type="email"
                       class="form-control border-0 bg-light rounded-end ps-1"
                       placeholder="E-mail"
                       required
-                      name="email"
-                      id="exampleInputEmail1"
-                    />
+                      name="Email"
+                      id="exampleInputEmail1" />
                   </div>
                 </div>
 
                 <!-- Password -->
                 <div class="mb-4">
-                  <label for="inputPassword5" class="form-label"
-                    >Password *</label
-                  >
+                  <label for="inputPassword5" class="form-label">Password
+                    *</label>
                   <div class="input-group input-group-lg">
                     <span
-                      class="input-group-text bg-light rounded-start border-0 text-secondary px-3"
-                      ><i class="fas fa-lock"></i
-                    ></span>
+                      class="input-group-text bg-light rounded-start border-0 text-secondary px-3"><i
+                        class="fas fa-lock"></i></span>
                     <input
                       type="password"
                       class="form-control border-0 bg-light rounded-end ps-1"
                       placeholder="*********"
-                      name="password"
-                      id="inputPassword5"
-                    />
+                      name="Password"
+                      id="inputPassword5" />
                   </div>
                 </div>
 
@@ -247,34 +207,28 @@
                 <div class="position-relative my-4">
                   <hr />
                   <p
-                    class="small position-absolute top-50 start-50 translate-middle bg-body px-5"
-                  >
+                    class="small position-absolute top-50 start-50 translate-middle bg-body px-5">
                     Or
                   </p>
                 </div>
                 <!-- Social btn -->
                 <div class="col-xxl-6 d-grid">
-                  <a href="#" class="btn bg-google mb-2 mb-xxl-0"
-                    ><i class="fab fa-fw fa-google text-white me-2"></i>Signup
-                    with Google</a
-                  >
+                  <a href="#" class="btn bg-google mb-2 mb-xxl-0"><i
+                      class="fab fa-fw fa-google text-white me-2"></i>Signup
+                    with Google</a>
                 </div>
                 <!-- Social btn -->
                 <div class="col-xxl-6 d-grid">
-                  <a href="#" class="btn bg-facebook mb-0"
-                    ><i class="fab fa-fw fa-facebook-f me-2"></i>Signup with
-                    Facebook</a
-                  >
+                  <a href="#" class="btn bg-facebook mb-0"><i
+                      class="fab fa-fw fa-facebook-f me-2"></i>Signup with
+                    Facebook</a>
                 </div>
               </div>
 
               <!-- Sign up link -->
               <div class="mt-4 text-center">
-                <span
-                  >Already have an account?<a href="/">
-                    Sign in here</a
-                  ></span
-                >
+                <span>Already have an account?<a href="/">
+                    Sign in here</a></span>
               </div>
             </div>
           </div>

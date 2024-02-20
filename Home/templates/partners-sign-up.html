@@ -12,26 +12,25 @@
           class="col-12 col-lg-6 d-md-flex align-items-center justify-content-center bg-primary bg-opacity-10 vh-lg-100"
         >
           <div class="p-3 p-lg-5">
+            <!-- Title -->
+            <!-- User Types-->
             <h5>Select the user based on preference!</h5>
             <div class="d-flex mb-2 flex-wrap">
-              <button class="btn button" onclick="selectButton(1)">
-                <a class="text-dark" href="/student-login/">Student</a>
-              </button>
-              <button class="btn btn-warning" onclick="selectButton(2)">
-                <a class="text-dark" href="/college-login">College admin</a>
-              </button>
-              <button class="btn button" onclick="selectButton(3)">
-                <a class="text-dark" href="/instructor-login">Instructor</a>
-              </button>
-              <button class="btn button" onclick="selectButton(4)">
-                <a class="text-dark" href="/partners-login/">Partners</a>
-              </button>
-              <button class="btn button" onclick="selectButton(5)">
-                <a class="text-dark" href="/admin/">Company</a>
-              </button>
+                <button class="btn bg-warning" onclick="selectButton(1)">
+                    <a class="text-dark" href="student_sign_up">Student</a>
+                </button>
+                <button class="btn button" onclick="selectButton(2)">
+                    <a class="text-dark" href="college_sign_up">College </a>
+                </button>
+                <button class="btn button" onclick="selectButton(3)">
+                    <a class="text-dark" href="instructor_sign_up">Instructor</a>
+                </button>
+                <button class="btn button" onclick="selectButton(4)">
+                    <a class="text-dark" href="partners_sign_up">Partners</a>
+                </button>
             </div>
+        <!--End User Types-->
 
-            <!-- Title -->
             <div class="text-center">
               <h2 class="fw-bold">Welcome to our largest community</h2>
               <p class="mb-0 h6 fw-light">Let's learn something new today!</p>
@@ -46,7 +45,6 @@
             <div
               class="d-sm-flex mt-5 align-items-center justify-content-center"
             >
-              <!-- Avatar group -->
               <ul class="avatar-group mb-2 mb-sm-0">
                 <li class="avatar avatar-sm">
                   <img
@@ -90,21 +88,86 @@
           <div class="row my-5">
             <div class="col-sm-10 col-xl-8 m-auto">
               <!-- Title -->
-              <span class="mb-0 fs-1">👋</span>
-              <h1 class="fs-2">Login into Eduport!</h1>
+              <img
+                src="{% static 'docs/assets/images/element/03.svg' %}"
+                class="h-40px mb-2"
+                alt=""
+              />
+              <h2>Sign up for your account!</h2>
               <p class="lead mb-4">
-                Nice to see you! Please log in with your account.
+                Nice to see you! Please Sign up with your account.
               </p>
-
-              {% if messages %} {{ message.tags }}
-              <div class="alert alert-primary" role="alert">
-                {% for message in messages %} {{ message }} {% endfor %}
-              </div>
-              {% endif %}
 
               <!-- Form START -->
               <form method="post" enctype="multipart/form-data">
-                {% csrf_token %}
+                {% csrf_token %} {% if messages %} {{ message.tags }}
+                <div class="alert alert-primary" role="alert">
+                  {% for message in messages %} {{ message }} {% endfor %}
+                </div>
+                {% endif %}
+
+                <!-- First Name -->
+                <div class="mb-4">
+                  <label for="exampleInputEmail1" class="form-label"
+                    >Organigation Name *</label
+                  >
+                  <div class="input-group input-group-lg">
+                    <span
+                      class="input-group-text bg-light rounded-start border-0 text-secondary px-3"
+                      ><i class="bi bi-person-circle"></i
+                    ></span>
+                    <input
+                      type="text"
+                      class="form-control border-0 bg-light rounded-end ps-1"
+                      placeholder="Organigation Name"
+                      required
+                      name="OrganigationName"
+                      id="exampleInputEmail1"
+                    />
+                  </div>
+                </div>
+
+                <!-- adminAdministrator -->
+                <div class="mb-4">
+                  <label for="exampleInputEmail1" class="form-label"
+                    >admin-Administrator *</label
+                  >
+                  <div class="input-group input-group-lg">
+                    <span
+                      class="input-group-text bg-light rounded-start border-0 text-secondary px-3"
+                      ><i class="bi bi-person-circle"></i
+                    ></span>
+                    <input
+                      type="text"
+                      class="form-control border-0 bg-light rounded-end ps-1"
+                      placeholder="admin-Administrator"
+                      name="adminAdministrator"
+                      required
+                      id="exampleInputEmail1"
+                    />
+                  </div>
+                </div>
+
+                <!-- phone -->
+                <div class="mb-4">
+                  <label for="exampleInputEmail1" class="form-label"
+                    >Phone *</label
+                  >
+                  <div class="input-group input-group-lg">
+                    <span
+                      class="input-group-text bg-light rounded-start border-0 text-secondary px-3"
+                      ><i class="bi bi-person-circle"></i
+                    ></span>
+                    <input
+                      type="tel"
+                      class="form-control border-0 bg-light rounded-end ps-1"
+                      placeholder="Phone"
+                      name="phone"
+                      required
+                      id="exampleInputEmail1"
+                    />
+                  </div>
+                </div>
 
                 <!-- Email -->
                 <div class="mb-4">
@@ -117,11 +180,12 @@
                       ><i class="bi bi-envelope-fill"></i
                     ></span>
                     <input
-                      type="text"
+                      type="email"
                       class="form-control border-0 bg-light rounded-end ps-1"
-                      placeholder="college@gmail.com"
-                      id="exampleInputEmail1"
+                      placeholder="E-mail"
+                      required
                       name="email"
+                      id="exampleInputEmail1"
                     />
                   </div>
                 </div>
@@ -139,45 +203,25 @@
                     <input
                       type="password"
                       class="form-control border-0 bg-light rounded-end ps-1"
-                      placeholder="password"
+                      placeholder="*********"
                       name="password"
                       id="inputPassword5"
                     />
                   </div>
-                  <div id="passwordHelpBlock" class="form-text">
-                    Your password must be 8 characters at least
-                  </div>
                 </div>
-                <!-- Check box -->
-                <div class="mb-4 d-flex justify-content-between mb-4">
-                  <div class="form-check">
-                    <input
-                      type="checkbox"
-                      class="form-check-input"
-                      id="exampleCheck1"
-                    />
-                    <label class="form-check-label" for="exampleCheck1"
-                      >Remember me</label
-                    >
-                  </div>
-                  <div class="text-primary-hover">
-                    <a href="/forgot-password/" class="text-secondary">
-                      <u>Forgot password?</u>
-                    </a>
-                  </div>
-                </div>
+
                 <!-- Button -->
                 <div class="align-items-center mt-0">
                   <div class="d-grid">
                     <button class="btn btn-primary mb-0" type="submit">
-                      Login
+                      Sign Up
                     </button>
                   </div>
                 </div>
               </form>
               <!-- Form END -->
 
-              <!-- Social buttons and divider -->
+              <!-- Social buttons -->
               <div class="row">
                 <!-- Divider with text -->
                 <div class="position-relative my-4">
@@ -188,18 +232,17 @@
                     Or
                   </p>
                 </div>
-
                 <!-- Social btn -->
                 <div class="col-xxl-6 d-grid">
                   <a href="#" class="btn bg-google mb-2 mb-xxl-0"
-                    ><i class="fab fa-fw fa-google text-white me-2"></i>Login
+                    ><i class="fab fa-fw fa-google text-white me-2"></i>Signup
                     with Google</a
                   >
                 </div>
                 <!-- Social btn -->
                 <div class="col-xxl-6 d-grid">
                   <a href="#" class="btn bg-facebook mb-0"
-                    ><i class="fab fa-fw fa-facebook-f me-2"></i>Login with
+                    ><i class="fab fa-fw fa-facebook-f me-2"></i>Signup with
                     Facebook</a
                   >
                 </div>
@@ -208,18 +251,18 @@
               <!-- Sign up link -->
               <div class="mt-4 text-center">
                 <span
-                  >Don't have an account?
-                  <a href="/student-register/">Signup here</a></span
+                  >Already have an account?<a href="/">
+                    Sign in here</a
+                  ></span
                 >
               </div>
             </div>
           </div>
-          <!-- Row END -->
         </div>
       </div>
-      <!-- Row END -->
     </div>
   </section>
 </main>
 <!-- **************** MAIN CONTENT END **************** -->
+
 {% endblock %}

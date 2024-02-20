@@ -24,9 +24,6 @@ def instructor_sign_in(request):
 def partners_sign_in(request):
     return render(request,'partners-sign-in.html')
 
-def Company_sign_in(request):
-    return render(request,'company-sign-in.html')
-
 def sign_up(request):
     return render(request,'sign-up.html')
 
@@ -37,13 +34,10 @@ def college_sign_up(request):
     return render(request,'college-sign-up.html')
 
 def instructor_sign_up(request):
-    return render(request,'instructor-sign_up.html')
+    return render(request,'instructor-sign-up.html')
 
 def partners_sign_up(request):
     return render(request,'partners-sign-up.html')
-
-def Company_sign_up(request):
-    return render(request,'company-sign-up.html')
 
 def forgot_password(request):
     return render(request,'forgot-password.html')

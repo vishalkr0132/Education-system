@@ -1,4 +1,6 @@
-{% extends 'base.html' %} {% block start %} {% load static %}
+{% extends 'base.html' %}
+ {% block start %} 
+ {% load static %}
 
 <!-- **************** MAIN CONTENT START **************** -->
 <main>
@@ -13,24 +15,23 @@
         >
           <div class="p-3 p-lg-5">
             <!-- Title -->
-            <h5>Select the user based on preference!</h5>
-            <div class="d-flex mb-2 flex-wrap">
-              <button class="btn button" onclick="selectButton(1)">
-                <a class="text-dark" href="/student-register/">Student</a>
-              </button>
-              <button class="btn button" onclick="selectButton(2)">
-                <a class="text-dark" href="/college-register/">College admin</a>
-              </button>
-              <button class="btn button" onclick="selectButton(3)">
-                <a class="text-dark" href="/instructor-register">Instructor</a>
-              </button>
-              <button class="btn btn-warning" onclick="selectButton(4)">
-                <a class="text-dark" href="/partners-register/">Partners</a>
-              </button>
-              <button class="btn button" onclick="selectButton(5)">
-                <a class="text-dark" href="/admin/">Company</a>
-              </button>
-            </div>
+             <!-- User Types-->
+             <h5>Select the user based on preference!</h5>
+             <div class="d-flex mb-2 flex-wrap">
+                 <button class="btn bg-warning" onclick="selectButton(1)">
+                     <a class="text-dark" href="student_sign_up">Student</a>
+                 </button>
+                 <button class="btn button" onclick="selectButton(2)">
+                     <a class="text-dark" href="college_sign_up">College </a>
+                 </button>
+                 <button class="btn button" onclick="selectButton(3)">
+                     <a class="text-dark" href="instructor_sign_up">Instructor</a>
+                 </button>
+                 <button class="btn button" onclick="selectButton(4)">
+                     <a class="text-dark" href="partners_sign_up">Partners</a>
+                 </button>
+             </div>
+         <!--End User Types-->
 
             <div class="text-center">
               <h2 class="fw-bold">Welcome to our largest community</h2>
@@ -107,10 +108,10 @@
                 </div>
                 {% endif %}
 
-                <!-- First Name -->
+                <!-- Full Name -->
                 <div class="mb-4">
                   <label for="exampleInputEmail1" class="form-label"
-                    >Organigation Name *</label
+                    >Full Name *</label
                   >
                   <div class="input-group input-group-lg">
                     <span
@@ -120,51 +121,9 @@
                     <input
                       type="text"
                       class="form-control border-0 bg-light rounded-end ps-1"
-                      placeholder="Organigation Name"
+                      placeholder="Full Name"
                       required
-                      name="OrganigationName"
-                      id="exampleInputEmail1"
-                    />
-                  </div>
-                </div>
-
-                <!-- adminAdministrator -->
-                <div class="mb-4">
-                  <label for="exampleInputEmail1" class="form-label"
-                    >admin-Administrator *</label
-                  >
-                  <div class="input-group input-group-lg">
-                    <span
-                      class="input-group-text bg-light rounded-start border-0 text-secondary px-3"
-                      ><i class="bi bi-person-circle"></i
-                    ></span>
-                    <input
-                      type="text"
-                      class="form-control border-0 bg-light rounded-end ps-1"
-                      placeholder="admin-Administrator"
-                      name="adminAdministrator"
-                      required
-                      id="exampleInputEmail1"
-                    />
-                  </div>
-                </div>
-
-                <!-- phone -->
-                <div class="mb-4">
-                  <label for="exampleInputEmail1" class="form-label"
-                    >Phone *</label
-                  >
-                  <div class="input-group input-group-lg">
-                    <span
-                      class="input-group-text bg-light rounded-start border-0 text-secondary px-3"
-                      ><i class="bi bi-person-circle"></i
-                    ></span>
-                    <input
-                      type="tel"
-                      class="form-control border-0 bg-light rounded-end ps-1"
-                      placeholder="Phone"
-                      name="phone"
-                      required
+                      name="full_name"
                       id="exampleInputEmail1"
                     />
                   </div>
@@ -186,6 +145,26 @@
                       placeholder="E-mail"
                       required
                       name="email"
+                      id="exampleInputEmail1"
+                    />
+                  </div>
+                </div>
+
+                <!-- phone -->
+                <div class="mb-4">
+                  <label for="exampleInputEmail1" class="form-label"
+                    >Phone *</label
+                  >
+                  <div class="input-group input-group-lg">
+                    <span
+                      class="input-group-text bg-light rounded-start border-0 text-secondary px-3"
+                      ><i class="bi bi-person-circle"></i
+                    ></span>
+                    <input
+                      type="tel"
+                      class="form-control border-0 bg-light rounded-end ps-1"
+                      placeholder="9845-1809-21"
+                      name="phone"
                       id="exampleInputEmail1"
                     />
                   </div>
@@ -252,7 +231,7 @@
               <!-- Sign up link -->
               <div class="mt-4 text-center">
                 <span
-                  >Already have an account?<a href="/student-login/">
+                  >Already have an account?<a href="/">
                     Sign in here</a
                   ></span
                 >

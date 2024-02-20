@@ -1,4 +1,6 @@
-{% extends 'base.html' %} {% block start %} {% load static %}
+{% extends 'base.html' %} 
+{% block start %} 
+{% load static %}
 
 <!-- **************** MAIN CONTENT START **************** -->
 <main>
@@ -9,24 +11,23 @@
         <div
           class="col-12 col-lg-6 d-md-flex align-items-center justify-content-center bg-primary bg-opacity-10 vh-lg-100">
           <div class="p-3 p-lg-5">
-            <h5>Select the user based on preference!</h5>
+           <!-- User Types-->
+						<h5>Select the user based on preference!</h5>
             <div class="d-flex mb-2 flex-wrap">
-              <button class="btn button" onclick="selectButton(1)">
-                <a class="text-dark" href="/student-login/">Student</a>
+              <button class="btn bg-warning" onclick="selectButton(1)">
+                <a class="text-dark" href="student_sign_in">Student</a>
               </button>
               <button class="btn button" onclick="selectButton(2)">
-                <a class="text-dark" href="/college-login">College admin</a>
+                <a class="text-dark" href="college_sign_in">College </a>
               </button>
               <button class="btn button" onclick="selectButton(3)">
-                <a class="text-dark" href="/instructor-login">Instructor</a>
+                <a class="text-dark" href="instructor_sign_in">Instructor</a>
               </button>
-              <button class="btn btn-warning" onclick="selectButton(4)">
-                <a class="text-dark" href="/partners-login/">Partners</a>
-              </button>
-              <button class="btn button" onclick="selectButton(5)">
-                <a class="text-dark" href="/admin/">Company</a>
+              <button class="btn button" onclick="selectButton(4)">
+                <a class="text-dark" href="partners_sign_in">Partners</a>
               </button>
             </div>
+          <!--End User Types-->
 
             <!-- Title -->
             <div class="text-center">
@@ -158,7 +159,7 @@
               <!-- Sign up link -->
               <div class="mt-4 text-center">
                 <span>Don't have an account?
-                  <a href="/student-register/">Signup here</a></span>
+                  <a href="sign_up">Signup here</a></span>
               </div>
             </div>
           </div>

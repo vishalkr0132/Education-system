@@ -1,93 +1,4 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<title>Eduport - LMS, Education and Course Theme</title>
-	<!-- Meta Tags -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="author" content="Webestica.com">
-	<meta name="description" content="Eduport- LMS, Education and Course Theme">
-
-	<!-- Dark mode -->
-	<script>
-		const storedTheme = localStorage.getItem('theme')
- 
-		const getPreferredTheme = () => {
-			if (storedTheme) {
-				return storedTheme
-			}
-			return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'light'
-		}
-
-		const setTheme = function (theme) {
-			if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-				document.documentElement.setAttribute('data-bs-theme', 'dark')
-			} else {
-				document.documentElement.setAttribute('data-bs-theme', theme)
-			}
-		}
-
-		setTheme(getPreferredTheme())
-
-		window.addEventListener('DOMContentLoaded', () => {
-		    var el = document.querySelector('.theme-icon-active');
-			if(el != 'undefined' && el != null) {
-				const showActiveTheme = theme => {
-				const activeThemeIcon = document.querySelector('.theme-icon-active use')
-				const btnToActive = document.querySelector(`[data-bs-theme-value="${theme}"]`)
-				const svgOfActiveBtn = btnToActive.querySelector('.mode-switch use').getAttribute('href')
-
-				document.querySelectorAll('[data-bs-theme-value]').forEach(element => {
-					element.classList.remove('active')
-				})
-
-				btnToActive.classList.add('active')
-				activeThemeIcon.setAttribute('href', svgOfActiveBtn)
-			}
-
-			window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-				if (storedTheme !== 'light' || storedTheme !== 'dark') {
-					setTheme(getPreferredTheme())
-				}
-			})
-
-			showActiveTheme(getPreferredTheme())
-
-			document.querySelectorAll('[data-bs-theme-value]')
-				.forEach(toggle => {
-					toggle.addEventListener('click', () => {
-						const theme = toggle.getAttribute('data-bs-theme-value')
-						localStorage.setItem('theme', theme)
-						setTheme(theme)
-						showActiveTheme(theme)
-					})
-				})
-
-			}
-		})
-		
-	</script>
-
-	<!-- Favicon -->
-	<link rel="shortcut icon" href="{% static '/assets/images/favicon.ico' %}">
-
-	<!-- Google Font -->
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
-
-	<!-- Plugins CSS -->
-	<link rel="stylesheet" type="text/css" href="{% static '/assets/vendor/font-awesome/css/all.min.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static '/assets/vendor/bootstrap-icons/bootstrap-icons.css' %}">
-
-	<!-- Theme CSS -->
-	<link rel="stylesheet" type="text/css" href="{% static '/assets/css/style.css' %}">
-  <link rel="stylesheet" type="text/css" href="{% static '/assets/css/custom.css' %}">
-
-</head>
-
-<body>
+{% extends 'base.html' %} {% block start %} {% load static %}
 
 <!-- **************** MAIN CONTENT START **************** -->
 <main>
@@ -98,27 +9,25 @@
       <div class="row">
         <!-- left -->
         <div
-          class="col-12 col-lg-6 d-md-flex align-items-center justify-content-center bg-primary bg-opacity-10 vh-lg-100"
-        >
+          class="col-12 col-lg-6 d-md-flex align-items-center justify-content-center bg-primary bg-opacity-10 vh-lg-100">
           <div class="p-3 p-lg-5">
-            <h5>Select the user based on preference!</h5>
+            <!-- User Types-->
+						<h5>Select the user based on preference!</h5>
             <div class="d-flex mb-2 flex-wrap">
               <button class="btn bg-warning" onclick="selectButton(1)">
-                <a class="text-dark" href="/student-login/">Student</a>
+                <a class="text-dark" href="student_sign_in">Student</a>
               </button>
               <button class="btn button" onclick="selectButton(2)">
-                <a class="text-dark" href="/college-login">College admin</a>
+                <a class="text-dark" href="college_sign_in">College </a>
               </button>
               <button class="btn button" onclick="selectButton(3)">
-                <a class="text-dark" href="/instructor-login/">Instructor</a>
+                <a class="text-dark" href="instructor_sign_in">Instructor</a>
               </button>
               <button class="btn button" onclick="selectButton(4)">
-                <a class="text-dark" href="/partners-login/">Partners</a>
-              </button>
-              <button class="btn button" onclick="selectButton(5)">
-                <a class="text-dark" href="/admin/">Company</a>
+                <a class="text-dark" href="partners_sign_in">Partners</a>
               </button>
             </div>
+          <!--End User Types-->
 
             <!-- Title -->
             <div class="text-center">
@@ -185,11 +94,11 @@
                 Nice to see you! Please log in with your account.
               </p>
 
-              {% comment %} {% if messages %} {{ message.tags }}
+              {% if messages %} {{ message.tags }}
               <div class="alert alert-primary" role="alert">
                 {% for message in messages %} {{ message }} {% endfor %}
               </div>
-              {% endif %} {% endcomment %}
+              {% endif %}
 
               <!-- Form START -->
               <form method="post" enctype="multipart/form-data">
@@ -298,7 +207,7 @@
               <div class="mt-4 text-center">
                 <span
                   >Don't have an account?
-                  <a href="student-sign-up">Signup here</a></span
+                  <a href="sign_up">Signup here</a></span
                 >
               </div>
             </div>
@@ -311,15 +220,4 @@
   </section>
 </main>
 <!-- **************** MAIN CONTENT END **************** -->
-<!-- Back to top -->
-<div class="back-top"><i class="bi bi-arrow-up-short position-absolute top-50 start-50 translate-middle"></i></div>
-
-<!-- Bootstrap JS -->
-<script src="{% static '/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
-
-<!-- Template Functions -->
-<script src="{% static '/assets/js/functions.js' %}"></script>
-<script src="{% static '/assets/js/custom.js' %}"></script>
-
-</body>
-</html>
+{% endblock %}

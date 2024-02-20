@@ -4,9 +4,6 @@ from django.urls import include,path
 from .views import logout_view
 
 urlpatterns = [
-    path('', views.loginuser, name='sign-in'),
-    path('sign_up',views.sign_up,name='sign_up'),
-    path('forgot_password',views.forgot_password, name='forgot_password'),
     path('admin_dashboard',views.admin_dashboard,name='admin_dashboard'),
     path('admin_instructor_detail',views.admin_instructor_detail, name='admin_instructor_detail'),
     path('admin_instructor_list',views.admin_instructor_list, name='admin_instructor_list'),

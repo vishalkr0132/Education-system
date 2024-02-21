@@ -89,11 +89,26 @@
                 Nice to see you! Please log in with your account.
               </p>
 
-              {% if messages %} {{ message.tags }}
-              <div class="alert alert-primary" role="alert">
-                {% for message in messages %} {{ message }} {% endfor %}
-              </div>
-              {% endif %}
+              <!--Start Message-->
+							<p>
+								{% if messages %}
+									{% for message in messages %}
+										{% if message.tags == 'success' %}
+											<p class="success-message">{{ message }}</p>
+										{% endif %}
+									{% endfor %}
+								{% endif %}
+
+								<!-- Check for error messages -->
+								{% if messages %}
+									{% for message in messages %}
+										{% if message.tags == 'error' %}
+											<p class="error-message">{{ message }}</p>
+										{% endif %}
+									{% endfor %}
+								{% endif %} 
+							</P>
+							<!-- End Start Message-->
 
               <!-- Form START -->
               <form method="post" enctype="multipart/form-data">

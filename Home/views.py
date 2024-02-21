@@ -4,7 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import login, authenticate,logout
 from django.contrib.auth.models import User
 from django.contrib import messages
-from .models import students_sign_up,colleges_sign_up,instructors_sign_up
+from .models import students_sign_up,colleges_sign_up,instructors_sign_up,partner_sign_up
 from django.contrib.auth.models import Group
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
@@ -75,7 +75,20 @@ def instructor_sign_in(request):
         return render(request,'instructor-sign-in.html')
 
 def partners_sign_in(request):
-    return render(request,'partners-sign-in.html')
+    if request.method == 'POST':
+        username = request.POST.get('Email')
+        password = request.POST.get('Password')
+        
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            login(request, user)
+            messages.error(request, 'You do not belong to any user.')
+            return redirect('./partners/')
+        else:
+            messages.error(request, 'Username and Password are incorrect.')
+            return redirect('/partners_sign_in')
+    else:
+        return render(request,'partners-sign-in.html')
 
 def sign_up(request):
     return render(request,'sign-up.html')
@@ -148,7 +161,27 @@ def instructor_sign_up(request):
         return render(request,'instructor-sign-up.html')
 
 def partners_sign_up(request):
-    return render(request,'partners-sign-up.html')
+    if request.method == 'POST':
+        Organigation_Name = request.POST.get('Organigation_Name')
+        Admin_Administrator = request.POST.get('Admin_Administrator')
+        Phone = request.POST.get('Phone')
+        Email = request.POST.get('Email')
+        Password = request.POST.get('Password')
+        
+        Partner_Register = partner_sign_up(Organigation_Name = Organigation_Name, Admin_Administrator = Admin_Administrator, Phone = Phone, Email = Email, Password = Password)
+        
+        # Check if email already exists
+        if User.objects.filter(email=Email).exists():
+            messages.error(request, 'Email is already taken. Please choose a different one.')
+            return redirect('/instructor_sign_up')
+        Partner_Register.save()
+        
+        user = User.objects.create_user(Email,Email,Password)
+        user.save()
+        messages.success(request, 'Registration successful. You can now log in.')
+        return redirect('/instructor_sign_in')
+    else:
+        return render(request,'partners-sign-up.html')
 
 def forgot_password(request):
     return render(request,'forgot-password.html')

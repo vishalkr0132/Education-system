@@ -90,15 +90,21 @@
               <p class="lead mb-4">
                 Nice to see you! Please Sign up with your account.
               </p>
+              <!--Start Print Message-->
+              <p>
+                {% if messages %}
+                    {% for message in messages %}
+                        {% if message.tags == 'error' %}
+                            <p class="error-message">{{ message }}</p>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+              </p>
+                <!--End Print Message-->
 
               <!-- Form START -->
               <form method="post" enctype="multipart/form-data">
-                {% csrf_token %} {% if messages %} {{ message.tags }}
-                <div class="alert alert-primary" role="alert">
-                  {% for message in messages %} {{ message }} {% endfor %}
-                </div>
-                {% endif %}
-
+                {% csrf_token %} 
                 <!-- First Name -->
                 <div class="mb-4">
                   <label for="exampleInputEmail1"
@@ -112,7 +118,7 @@
                       class="form-control border-0 bg-light rounded-end ps-1"
                       placeholder="Organigation Name"
                       required
-                      name="OrganigationName"
+                      name="Organigation_Name"
                       id="exampleInputEmail1" />
                   </div>
                 </div>
@@ -120,7 +126,7 @@
                 <!-- adminAdministrator -->
                 <div class="mb-4">
                   <label for="exampleInputEmail1"
-                    class="form-label">admin-Administrator *</label>
+                    class="form-label">Admin Administrator *</label>
                   <div class="input-group input-group-lg">
                     <span
                       class="input-group-text bg-light rounded-start border-0 text-secondary px-3"><i
@@ -129,7 +135,7 @@
                       type="text"
                       class="form-control border-0 bg-light rounded-end ps-1"
                       placeholder="admin-Administrator"
-                      name="adminAdministrator"
+                      name="Admin_Administrator"
                       required
                       id="exampleInputEmail1" />
                   </div>
@@ -147,7 +153,7 @@
                       type="tel"
                       class="form-control border-0 bg-light rounded-end ps-1"
                       placeholder="Phone"
-                      name="phone"
+                      name="Phone"
                       required
                       id="exampleInputEmail1" />
                   </div>
@@ -166,7 +172,7 @@
                       class="form-control border-0 bg-light rounded-end ps-1"
                       placeholder="E-mail"
                       required
-                      name="email"
+                      name="Email"
                       id="exampleInputEmail1" />
                   </div>
                 </div>
@@ -183,7 +189,7 @@
                       type="password"
                       class="form-control border-0 bg-light rounded-end ps-1"
                       placeholder="*********"
-                      name="password"
+                      name="Password"
                       id="inputPassword5" />
                   </div>
                 </div>

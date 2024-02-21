@@ -84,13 +84,28 @@ def logout_view(request):
 def forgot_password(request):
     return render(request,'forgot-password.html')
 
+# def admin_dashboard(request):
+#     if request.user.is_anonymous:
+#         return redirect('/')
+#     else:
+#         username = request.user.username
+#         Admin = signup.objects.filter(Email=username)
+#         context = {'Admin': Admin}
+#         return render(request, 'admin-dashboard.html', context)
+
 def admin_dashboard(request):
     if request.user.is_anonymous:
         return redirect('/')
+    elif request.user.is_superuser:
+        superuser = User.objects.get(username=request.user.username)
+        first_name = superuser.first_name
+        last_name = superuser.last_name
+        context = {'first_name': first_name, 'last_name': last_name}
+        return render(request, 'admin-dashboard.html', context)
     else:
         username = request.user.username
-        Admin = signup.objects.filter(Email=username)
-        context = {'Admin': Admin}
+        admin_user = signup.objects.filter(Email=username).first()
+        context = {'Admin': admin_user}
         return render(request, 'admin-dashboard.html', context)
 
 def admin_instructor_detail(request):

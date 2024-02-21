@@ -1,31 +1,20 @@
 from django.shortcuts import render
 from django.shortcuts import redirect,render,HttpResponse
 from django.contrib.auth import logout
-from admins.models import signup
+from Home.models import students_sign_up
 
 # Create your views here.
-
-# def student_dashboard(request):
-#     if request.user.is_anonymous:
-#         return redirect('/')
-#     else:
-#         username = request.user.username
-#         Admin = signup.objects.filter(Email=username)
-#         Admin = signup.objects.all()
-#         Admin_Name = {'Admin': Admin, 'Admin': Admin}
-#         return render(request, 'admin-dashboard.html', Admin_Name)
-
 def student_dashboard(request):
     if request.user.is_anonymous:
         return redirect('/')
     else:
         username = request.user.username
-        Student = signup.objects.filter(Email=username)
+        Student = students_sign_up.objects.filter(Email=username)
         context = {'Student': Student}
         return render(request, 'student-dashboard.html', context)
 
-def admin_student_list(request):
-    return render(request,'admin-student-list.html')
+def student_profile(request):
+    return render(request,'student-profile.html')
 
 def logout_view(request):
     logout(request)

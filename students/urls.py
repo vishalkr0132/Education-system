@@ -9,7 +9,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('logout/', logout_view, name='logout'),
     path('', views.student_dashboard, name='student_dashboard'),
-    path('admin_student_list', views.admin_student_list, name='admin_student_list'),
+    path('student_profile', views.student_profile, name='student_profile')
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

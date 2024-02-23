@@ -15,4 +15,5 @@ urlpatterns = [
     path('instructor_sign_up',views.instructor_sign_up,name='instructor_sign_up'),
     path('partners_sign_up',views.partners_sign_up,name='partners_sign_up'),
     path('forgot_password',views.forgot_password, name='forgot_password'),
+    
 ]

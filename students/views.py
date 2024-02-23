@@ -1,13 +1,13 @@
 from django.shortcuts import render
 from django.shortcuts import redirect,render,HttpResponse
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from Home.models import students_sign_up
 from django.contrib import messages
-# from .models import *
-from .forms import *
 from django.http import FileResponse
 from django.core.files.storage import default_storage
 from django.http import Http404
+
 
 # Create your views here.
 def student_dashboard(request):

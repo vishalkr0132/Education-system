@@ -113,7 +113,7 @@
                 <!-- Profile START -->
                 <div class="dropdown ms-1 ms-lg-0">
                     <a class="avatar avatar-sm p-0" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img class="avatar-img rounded-circle" src="{% static 'docs/assets/images/avatar/01.jpg' %}" alt="avatar">
+                        <img class="avatar-img rounded-circle" src="/media/{{ Data.Profile_Pic }}" alt="avatar">
                     </a>
                     <ul class="dropdown-menu dropdown-animation dropdown-menu-end shadow pt-3" aria-labelledby="profileDropdown">
                         <!-- Profile info -->
@@ -121,7 +121,7 @@
 							<div class="d-flex align-items-center">
 								<!-- Avatar -->
                                 <div class="avatar me-3">
-									<img class="avatar-img rounded-circle shadow" src="{% static 'docs/assets/images/avatar/01.jpg' %}" alt="avatar">
+									<img class="avatar-img rounded-circle shadow" src="/media/{{ Data.Profile_Pic }}" alt="avatar">
                                 </div>
 								
 								<div>
@@ -303,7 +303,7 @@
 
                                         <!-- Upload button -->
                                         <label class="btn btn-primary-soft mb-0" for="uploadfile-1">Change</label>
-                                        <input type="file" id="uploadfile-1" name="profile_pic" class="form-control d-none" />
+                                        <input type="file" id="uploadfile-1" name="Profile_Pic" class="form-control d-none" />
                                     </div>
                                 </div>
 
@@ -325,7 +325,7 @@
                                 <!-- Email -->
                                 <div class="col-md-6">
                                     <label class="form-label">Email</label>
-                                    <input class="form-control" type="text" placeholder="Email" name="Email" value="{{Data.Email}}"/>
+                                    <input class="form-control" type="text" placeholder="Email" name="Email" value="{{ Data.Email }}"/>
                                 </div>
 
                                 <!-- Phone number -->
@@ -347,13 +347,13 @@
                                 <!-- DOB -->
                                 <div class="col-md-6">
                                     <label class="form-label">DOB</label>
-                                    <input class="form-control" name="DOB" type="date" value="{{ Data.DOB }}">
+                                    <input class="form-control" name="DOB" type="date" value="{{ Data.DOB|date:'Y-m-d' }}">
                                 </div>                                
 
                                 <!-- About me -->
                                 <div class="col-12">
                                     <label class="form-label">About me</label>
-                                    <textarea class="form-control" rows="3" name="about">{{Data.about}}</textarea>
+                                    <textarea class="form-control" rows="3" name="About">{{Data.About}}</textarea>
                                     <div class="form-text">
                                         Brief description for your profile.
                                     </div>

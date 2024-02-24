@@ -12,6 +12,12 @@ class students_sign_up(models.Model):
     Last_Name = models.CharField(max_length=255, null=True)
     Email = models.CharField(max_length=255)
     Password = models.CharField(max_length=255)
+    Location = models.CharField(max_length=255, null=True)
+    Phone = models.CharField(max_length=20, null=True)
+    Gender = models.CharField(max_length=10, choices=[('Male', 'Male'), ('Female', 'Female'), ('Other', 'Other')], null=True, blank=True)
+    DOB = models.DateField(null=True)
+    About = models.TextField(null=True)
+    Profile_Pic = models.ImageField(upload_to='profiles/', null=True)
     
     def save(self, *args, **kwargs):
         self.updated_at = timezone.now()

@@ -115,12 +115,13 @@ def student_profile(request):
         username = request.user.username
         try:
             student = students_sign_up.objects.get(Email=username)
+            Student_Data = students_sign_up.objects.filter(Email=username)
             profile = Profiles.objects.filter(Student=student).first()
         except students_sign_up.DoesNotExist:
             profile = None
 
         # Pass profile as a list to ensure it's iterable in the template
-        context = {'profile': [profile]} if profile else {'profile': []}
+        context = {'profile': profile,'profile': Student_Data}
         return render(request, 'student-profile.html',context)
 
 def logout_view(request):

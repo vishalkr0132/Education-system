@@ -109,7 +109,7 @@
 							<span></span>
 						</span>
 					</button>
-
+                    {% for Data in profile %}
                 <!-- Profile START -->
                 <div class="dropdown ms-1 ms-lg-0">
                     <a class="avatar avatar-sm p-0" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
@@ -123,12 +123,12 @@
                                 <div class="avatar me-3">
 									<img class="avatar-img rounded-circle shadow" src="{% static 'docs/assets/images/avatar/01.jpg' %}" alt="avatar">
                                 </div>
-								{% for Data in profile %}
+								
 								<div>
 									<a class="h6" href="#">{{ Data.First_Name }} {{ Data.Last_Name }}</a>
 									<p class="small m-0">{{ Data.Email }}</p>  <!-- Display email address if available -->
 								</div>
-								{% endfor %}
+								
                             </div>
                         </li>
                         <li>
@@ -141,7 +141,7 @@
 										class="bi bi-gear fa-fw me-2"></i>Account Settings</a></li>
                         <li><a class="dropdown-item" href="#"><i
 										class="bi bi-info-circle fa-fw me-2"></i>Help</a></li>
-                        <li><a class="dropdown-item bg-danger-soft-hover" href="#"><i
+                        <li><a class="dropdown-item bg-danger-soft-hover" href="logout"><i
 										class="bi bi-power fa-fw me-2"></i>Sign Out</a></li>
                         <li>
                             <hr class="dropdown-divider">
@@ -192,9 +192,7 @@
 
     <!-- **************** MAIN CONTENT START **************** -->
     <main>
-
-        <!-- =======================
-Page Banner START -->
+        <!-- =======================Page Banner START ===================-->''
         <section class="pt-0">
             <!-- Main banner background image -->
             <div class="container-fluid px-0">
@@ -210,7 +208,7 @@ Page Banner START -->
                                 <!-- Avatar -->
                                 <div class="col-auto mt-4 mt-md-0">
                                     <div class="avatar avatar-xxl mt-n3">
-                                        <img class="avatar-img rounded-circle border border-white border-3 shadow" src="{% static 'docs/assets/images/avatar/01.jpg' %}" alt>
+                                        <img class="avatar-img rounded-circle border border-white border-3 shadow" src="/media/{{ Data.Profile_Pic }}" alt>
                                     </div>
                                 </div>
                                 <!-- Profile info -->
@@ -219,29 +217,29 @@ Page Banner START -->
 
                                         <div class="my-1 fs-4 col-lg-3 col-md-3 col-sm-6">
                                             <div class="d-flex">
-                                                <h1 class="my-1 fs-4">USERNAME</h1>
+                                                <h1 class="my-1 fs-4">{{ Data.First_Name }} {{ Data.Last_Name }}</h1>
 
                                                 <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
 													<i class="bi bi-pencil"></i>
 												</button>
                                             </div>
-                                            <h6>degree </h6>
+                                            <h6>degree</h6>
                                             <h6>college</h6>
-                                            <h6><i class="bi me-1 bi-calendar2-check"></i> created_at</h6>
+                                            <h6><i class="bi me-1 bi-calendar2-check"></i>{{ Data.created_at }}</h6>
                                         </div>
 
                                         <div class="row d-flex col-lg-6 col-md-9 col-sm-6 justify-content-between align-items-end">
 
                                             <div class="col-12 col-md-6 col-lg-6">
-                                                <p><i class="bi me-1 bi-geo-alt"></i> location</p>
+                                                <p><i class="bi me-1 bi-geo-alt"></i>{{Data.Location}}</p>
                                                 <!-- <p><i class="bi me-1 bi-gender-trans"></i> {{request.user.gender}}</p> -->
-                                                <p><i class="bi me-1 bi-gender-trans"></i> Male</p>
-                                                <p><i class="bi me-1 bi-cake2"></i> dob</p>
+                                                <p><i class="bi me-1 bi-gender-trans"></i>{{Data.Gender}}</p>
+                                                <p><i class="bi me-1 bi-cake2"></i>{{Data.DOB}}</p>
                                             </div>
 
                                             <div class="col-12 col-md-6 col-lg-6">
-                                                <p><i class="bi me-1 bi-telephone"></i> phone<i class="bi bi-check2-circle text-success"></i></p>
-                                                <p><i class="bi me-1 bi-envelope-check"></i> email <i class="bi bi-check2-circle text-success"></i></p>
+                                                <p><i class="bi me-1 bi-telephone"></i>{{Data.Phone}}<i class="bi bi-check2-circle text-success"></i></p>
+                                                <p><i class="bi me-1 bi-envelope-check"></i>{{Data.Email}} <i class="bi bi-check2-circle text-success"></i></p>
                                             </div>
                                         </div>
 
@@ -265,13 +263,11 @@ Page Banner START -->
                 </div>
             </div>
         </section>
-        <!-- =======================
-Page Banner END -->
+        <!-- =======================Page Banner END ========================-->
 
         <!-- update profile -->
         <!-- Modal -->
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-
             <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -283,10 +279,8 @@ Page Banner END -->
                         <div class="card-body">
 
                             <!-- Start Form -->
-
                             <form class="row g-4" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
-
                                 <!-- Profile picture -->
                                 <div class="col-12 justify-content-center align-items-center">
                                     <label class="form-label">Profile picture</label>
@@ -296,12 +290,12 @@ Page Banner END -->
 												<span class="avatar avatar-xl">
 													<img id="uploadfile-1-preview"
 														class="avatar-img rounded-circle border border-white border-3 shadow"
-														src="/media/{{request.user.profile_pic}}" alt="profile logo" />
+														src="/media/{{ Data.Profile_Pic }}" alt="profile logo" />
 												</span>
 
 												<!-- Remove btn -->
 												<button type="button" class="uploadremove">
-													<a href="/delete-profile-img/{{ request.user.id }}/"><i
+													<a href="/delete-profile-img/"><i
 															class="bi bi-x text-white"></i></a>
 												</button>
 
@@ -317,46 +311,49 @@ Page Banner END -->
                                 <div class="col-12">
                                     <label class="form-label">Full name</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" value="{{request.user.first_name}}" placeholder="First name" name="first_name" />
-                                        <input type="text" class="form-control" value="{{request.user.last_name}}" placeholder="Last name" name="last_name" />
+                                        <input type="text" class="form-control" placeholder="First name" name="First_Name" value="{{ Data.First_Name }}"/>
+                                        <input type="text" class="form-control"  placeholder="Last name" name="Last_Name" value="{{ Data.Last_Name }}"/>
                                     </div>
                                 </div>
 
                                 <!-- location -->
                                 <div class="col-md-6">
                                     <label class="form-label">Location</label>
-                                    <input class="form-control" type="text" placeholder="location" value="{{request.user.location}}" name="location" />
+                                    <input class="form-control" type="text" placeholder="location" name="Location" value="{{Data.Location}}"/>
                                 </div>
 
                                 <!-- Email -->
                                 <div class="col-md-6">
                                     <label class="form-label">Email</label>
-                                    <input class="form-control" type="text" placeholder="Email" value="{{request.user.email}}" name="email" />
+                                    <input class="form-control" type="text" placeholder="Email" name="Email" value="{{Data.Email}}"/>
                                 </div>
 
                                 <!-- Phone number -->
                                 <div class="col-md-6">
                                     <label class="form-label">Phone number</label>
-                                    <input type="text" class="form-control" value="{{request.user.phone}}" placeholder="Phone number" name="phone" />
+                                    <input type="text" class="form-control" placeholder="Phone number" name="Phone" value="{{Data.Phone}}"/>
                                 </div>
 
                                 <!-- Gender -->
-                                <!-- <div class="col-md-6">
-								<label class="form-label">Gender</label>
-								<input type="text" class="form-control" value="{{request.user.gender}}"
-									placeholder="Gender" name="gender" />
-							</div> -->
-
+                                <div class="col-md-6">
+                                    <label class="form-label">Gender:</label>
+                                    <select class="form-select" aria-label="Default select example" placeholder="Gender" name="Gender" value="{{Data.Gender}}">
+											<option selected>Gender</option>
+											<option value="Male" {% if Data.Gender == "Male" %} selected {% endif %}>Male</option>
+											<option value="Female" {% if Data.Gender == "Female" %} selected {% endif %}>Female</option>
+											<option value="Other" {% if Data.Gender == "Other" %} selected {% endif %}>Other</option>
+										</select>
+                                </div>
                                 <!-- DOB -->
                                 <div class="col-md-6">
                                     <label class="form-label">DOB</label>
-                                    <input class="form-control" name="dob" value="{{request.user.dob}}" type="date" />
-                                </div>
+                                    <input class="form-control" name="DOB" type="date" value="{{ Data.DOB }}">
+                                </div>                                
 
                                 <!-- About me -->
                                 <div class="col-12">
                                     <label class="form-label">About me</label>
-                                    <textarea class="form-control" rows="3" name="about_me">{{request.user.about_me}}</textarea>
+                                    <textarea class="form-control" rows="3" name="about">{{Data.about}}</textarea>
                                     <div class="form-text">
                                         Brief description for your profile.
                                     </div>
@@ -381,7 +378,7 @@ Page Banner END -->
 
         </div>
 
-
+		
         <!-- Resume headline section -->
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -1255,7 +1252,7 @@ Page content START -->
 													class="bi bi-gear fa-fw me-2"></i>Settings</a>
                                         <a class="list-group-item" href="instructor-delete-account.html"><i
 													class="bi bi-trash fa-fw me-2"></i>Delete Profile</a>
-                                        <a class="list-group-item text-danger bg-danger-soft-hover" href="sign-in.html"><i
+                                        <a class="list-group-item text-danger bg-danger-soft-hover" href="logout"><i
 													class="fas fa-sign-out-alt fa-fw me-2"></i>Sign Out</a>
                                     </div>
                                 </div>
@@ -1312,7 +1309,7 @@ Page content START -->
                             <div class="card-body">
                                 <div class="col-12">
                                     <label class="form-label">Resume headline *</label>
-                                    <p>{{request.user.resumeheadline}}</p>
+                                    <p>Resume Heading</p>
                                 </div>
                             </div>
 
@@ -1714,9 +1711,7 @@ Page content START -->
                                         </div>
                                         <!-- Button -->
                                         <div class="d-flex justify-content-end mt-4">
-                                            <button type="button" class="btn btn-primary mb-0">
-													Change password
-												</button>
+                                            <button type="button" class="btn btn-primary mb-0">Change password</button>
                                         </div>
                                     </div>
                                     <!-- Card body END -->
@@ -1730,8 +1725,7 @@ Page content START -->
                 <!-- Row END -->
             </div>
         </section>
-        <!-- =======================
-Page content END -->
+        <!-- =======================Page content END ================-->
 
     </main>
     <!-- **************** MAIN CONTENT END **************** -->
@@ -1770,8 +1764,8 @@ Footer START -->
             </div>
         </div>
     </footer>
-    <!-- =======================
-Footer END -->
+    {% endfor %}
+    <!-- ======================= Footer END ===========================-->
 
     <!-- Back to top -->
     <div class="back-top"><i class="bi bi-arrow-up-short position-absolute top-50 start-50 translate-middle"></i></div>

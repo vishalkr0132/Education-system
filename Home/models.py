@@ -7,17 +7,17 @@ from django.utils import timezone
 class students_sign_up(models.Model):
     id = models.AutoField(primary_key=True)
     created_at = models.DateTimeField(default=timezone.now)
-    updated_at = models.DateTimeField(default=timezone.now)
+    Date = models.DateField(default=timezone.now)
     First_Name = models.CharField(max_length=255)
     Last_Name = models.CharField(max_length=255, null=True)
     Email = models.CharField(max_length=255)
     Password = models.CharField(max_length=255)
-    Location = models.CharField(max_length=255, null=True)
-    Phone = models.CharField(max_length=20, null=True)
-    Gender = models.CharField(max_length=10, choices=[('Male', 'Male'), ('Female', 'Female'), ('Other', 'Other')], null=True, blank=True)
+    Location = models.CharField(max_length=255)
+    Phone = models.CharField(max_length=20)
+    Gender = models.CharField(max_length=10)
     DOB = models.DateField(null=True)
-    About = models.TextField(null=True)
-    Profile_Pic = models.ImageField(upload_to='profiles/', null=True)
+    About = models.TextField()
+    Profile_Pic = models.ImageField(upload_to='profiles/')
     
     def save(self, *args, **kwargs):
         self.updated_at = timezone.now()

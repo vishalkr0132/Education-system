@@ -5,6 +5,7 @@ from django.utils import timezone
 # Create your models here.
 
 class students_sign_up(models.Model):
+    # user = models.OneToOneField(User, on_delete=models.CASCADE)
     id = models.AutoField(primary_key=True)
     created_at = models.DateTimeField(default=timezone.now)
     Date = models.DateField(default=timezone.now)

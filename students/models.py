@@ -24,3 +24,17 @@ from Home.models import students_sign_up
 
 #     def __str__(self):
 #         return self.First_Name + ' ' + self.Last_Name
+
+# class Resumes(models.Model):
+#     Student = models.OneToOneField(students_sign_up, on_delete=models.CASCADE, related_name='resume')
+#     Resume = models.FileField(upload_to='Resumes/')
+
+#     def __str__(self):
+#         return f"Resume of {self.student.email}"
+class Resumes(models.Model):
+    id = models.AutoField(primary_key=True)
+    # user = models.OneToOneField(User, related_name='resume', on_delete=models.CASCADE)
+    Resume = models.FileField(upload_to='resumes/')
+
+    def __str__(self):
+        return self.id

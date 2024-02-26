@@ -1,6 +1,9 @@
 from django.contrib import admin
-# from .models import Profiles
+from .models import Resumes
 
 # Register your models here.
 
-# admin.site.register(Profiles)
+# class ResumesAdmin(admin.ModelAdmin):
+#     list_display = ['Student', 'Resume']  # Ensure 'Student' is capitalized
+
+admin.site.register(Resumes)

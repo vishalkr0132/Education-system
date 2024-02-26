@@ -382,7 +382,6 @@
             <div class="modal-dialog">
                 <form class="row g-4" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
-
                     <div class="modal-content">
                         <div class="modal-header">
                             <h1 class="modal-title fs-5" id="exampleModalLabel">Resume headline</h1>
@@ -1274,7 +1273,7 @@ Page content START -->
                                         <div class="mb-3">
                                             <div class="d-flex align-items-center">
                                                 <label class="position-relative me-4" for="uploadfile-1" title="Replace this resume">
-														<input type="file">
+														<input type="file" name="Resume">
 														<!-- Remove btn -->
 														<button type="button" class="uploadremove"
 															style="background-color: transparent;">
@@ -1293,7 +1292,7 @@ Page content START -->
                                     <button type="submit" name="resume_submit" class="btn btn-primary mb-0">
 											Upload Resume
 										</button>
-                                    <button type="button" onclick="window.location.href='/download-resume-pdf/'" class="uploadremove" style="background-color: transparent;">
+                                    <button type="button" onclick="window.location.href="{{ resume.Resume.url }}" class="uploadremove" style="background-color: transparent;">
 											<i class="bi bi-download text-white"></i>
 										</button>
 

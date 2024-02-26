@@ -12,6 +12,7 @@ urlpatterns = [
     path('admin_instructor_request',views.admin_instructor_request, name='admin_instructor_request'),
     path('admin_student_list',views.admin_student_list, name='admin_student_list'),
     path('admin_college_list',views.admin_college_list, name='admin_college_list'),
+    path('admin_student_detail',views.admin_student_detail, name='admin_student_detail'),
     path('admin_course_list',views.admin_course_list, name='admin_course_list'),
     path("admin_course_category",views.admin_course_category, name='admin_course_category'),
     path('admin_course_detail',views.admin_course_detail, name='admin_course_detail'),

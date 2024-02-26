@@ -67,6 +67,14 @@ def admin_student_list(request):
         data={'Student':Student}
         return render(request,'admin-student-list.html',data)
     
+def admin_student_detail(request):
+    if request.user.is_anonymous:
+        return redirect('/')
+    else:
+        detail = students_sign_up.objects.all()
+        data = {'detail': detail}
+        return render(request, 'admin-student-detail.html', data)
+    
 def admin_course_list(request):
     if request.user.is_anonymous:
         return redirect('/')

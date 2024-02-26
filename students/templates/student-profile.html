@@ -1273,12 +1273,12 @@ Page content START -->
                                         <div class="mb-3">
                                             <div class="d-flex align-items-center">
                                                 <label class="position-relative me-4" for="uploadfile-1" title="Replace this resume">
+                                                    <P>download your Resume  <a href="{{ resume.resume.url}}">{{resume.resume.name}}</a></P>
 														<input type="file" name="Resume">
 														<!-- Remove btn -->
 														<button type="button" class="uploadremove"
 															style="background-color: transparent;">
-															<a href="/delete-resume-pdf/{{ resume_form.instance.id }}/"><i
-																	class="bi bi-trash text-warning"></i></a>
+															<a href="/delete-resume-pdf/{{ resume_form.instance.id }}/"><i class="bi bi-trash text-warning"></i></a>
 														</button>
 													</label>
                                             </div>
@@ -1292,7 +1292,7 @@ Page content START -->
                                     <button type="submit" name="resume_submit" class="btn btn-primary mb-0">
 											Upload Resume
 										</button>
-                                    <button type="button" onclick="window.location.href="{{ resume.Resume.url }}" class="uploadremove" style="background-color: transparent;">
+                                    <button type="button" onclick="window.location.href="{{ resume.resume.url }}" class="uploadremove" style="background-color: transparent;">
 											<i class="bi bi-download text-white"></i>
 										</button>
 

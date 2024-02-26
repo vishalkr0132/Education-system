@@ -8,6 +8,7 @@ from .models import students_sign_up,colleges_sign_up,instructors_sign_up,partne
 from django.contrib.auth.models import Group
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
+from django.utils import timezone
 
 # Create your views here.
 def loginuser(request):
@@ -93,6 +94,27 @@ def partners_sign_in(request):
 def sign_up(request):
     return render(request,'sign-up.html')
 
+# def student_sign_up(request):
+#     if request.method == 'POST':
+#         First_Name = request.POST.get('First_Name')
+#         Last_Name = request.POST.get('Last_Name')
+#         Email = request.POST.get('Email')
+#         Password = request.POST.get('Password')
+        
+#         Student_Register = students_sign_up(First_Name = First_Name, Last_Name = Last_Name, Email = Email, Password = Password)
+        
+#          # Check if email already exists
+#         if User.objects.filter(email=Email).exists():
+#             messages.error(request, 'Email is already taken. Please choose a different one.')
+#             return redirect('/student_sign_up')
+#         Student_Register.save()
+#         user = User.objects.create_user(Email,Email,Password)
+#         user.save()
+#         messages.success(request, 'Registration successful. You can now log in.')
+#         return redirect('/student_sign_in')
+#     else:
+#         return render(request,'student-sign-up.html')
+
 def student_sign_up(request):
     if request.method == 'POST':
         First_Name = request.POST.get('First_Name')
@@ -100,19 +122,35 @@ def student_sign_up(request):
         Email = request.POST.get('Email')
         Password = request.POST.get('Password')
         
-        Student_Register = students_sign_up(First_Name = First_Name, Last_Name = Last_Name, Email = Email, Password = Password)
-        
-         # Check if email already exists
+        # Check if email already exists
         if User.objects.filter(email=Email).exists():
             messages.error(request, 'Email is already taken. Please choose a different one.')
             return redirect('/student_sign_up')
-        Student_Register.save()
-        user = User.objects.create_user(Email,Email,Password)
-        user.save()
+        
+        # Create a new User instance
+        user = User.objects.create_user(username=Email, email=Email, password=Password)
+        
+        # Create a new students_sign_up instance and associate it with the created user
+        Student_Register = students_sign_up.objects.create(
+            user=user,
+            First_Name=First_Name,
+            Last_Name=Last_Name,
+            Email=Email,
+            Password=Password,
+            created_at=timezone.now(),
+            Date=timezone.now(),  # This should be set to a meaningful value
+            Location='',          # You can adjust this based on your requirements
+            Phone='',             # You can adjust this based on your requirements
+            Gender='',            # You can adjust this based on your requirements
+            DOB=None,             # You can adjust this based on your requirements
+            About='',             # You can adjust this based on your requirements
+            Profile_Pic=''        # You can adjust this based on your requirements
+        )
+        
         messages.success(request, 'Registration successful. You can now log in.')
         return redirect('/student_sign_in')
     else:
-        return render(request,'student-sign-up.html')
+        return render(request, 'student-sign-up.html')
 
 def college_sign_up(request):
     if request.method == 'POST':

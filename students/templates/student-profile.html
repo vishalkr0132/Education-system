@@ -1226,7 +1226,7 @@ Page content START -->
                                 <div class="bg-dark border rounded-3 pb-0 p-3 w-100">
                                     <!-- Dashboard menu -->
                                     <div class="list-group list-group-dark list-group-borderless">
-                                        <a class="list-group-item" href="instructor-dashboard.html"><i
+                                        <a class="list-group-item" href="/"><i
 													class="bi bi-ui-checks-grid fa-fw me-2"></i>Dashboard</a>
                                         <a class="list-group-item" href="instructor-manage-course.html"><i
 													class="bi bi-basket fa-fw me-2"></i>My Courses</a>
@@ -1274,12 +1274,14 @@ Page content START -->
                                             <div class="d-flex align-items-center">
                                                 <label class="position-relative me-4" for="uploadfile-1" title="Replace this resume">
                                                     <P>download your Resume  <a href="{{ resume.resume.url}}">{{resume.resume.name}}</a></P>
+
 														<input type="file" name="Resume">
+
 														<!-- Remove btn -->
-														<button type="button" class="uploadremove"
+														{% comment %} <button type="button" class="uploadremove"
 															style="background-color: transparent;">
-															<a href="/delete-resume-pdf/{{ resume_form.instance.id }}/"><i class="bi bi-trash text-warning"></i></a>
-														</button>
+															<a href="/delete-resume-pdf/{{ resume.resume.id }}/"><i class="bi bi-trash text-warning"></i></a>
+														</button> {% endcomment %}
 													</label>
                                             </div>
                                         </div>

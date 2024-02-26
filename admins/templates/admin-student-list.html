@@ -66,7 +66,7 @@
 					<!-- Tabs content item START -->
 					<div class="tab-pane fade show active" id="nav-preview-tab-1">
 						<div class="row g-4">
-
+							{% for i in Student %}
 							<!-- Card item START -->
 							<div class="col-md-6 col-xxl-4">
 								<div class="card bg-transparent border h-100"> 
@@ -74,13 +74,15 @@
 									<div class="card-header bg-transparent border-bottom d-flex justify-content-between">
 										<div class="d-sm-flex align-items-center">
 											<!-- Avatar -->
+											{% if i.Profile_Pic %}
 											<div class="avatar avatar-md flex-shrink-0">
-												<img class="avatar-img rounded-circle" src="{% static 'docs/assets/images/avatar/01.jpg' %}" alt="avatar">
+												<img class="avatar-img rounded-circle" src="/media/{{ i.Profile_Pic }}" alt="avatar">
 											</div>
+											{% endif %}
 											<!-- Info -->
 											<div class="ms-0 ms-sm-2 mt-2 mt-sm-0">
-												<h5 class="mb-0"><a href="#">Carolyn Ortiz</a></h5>
-												<span class="text-body small"><i class="fas fa-fw fa-map-marker-alt me-1 mt-1"></i>Mumbai</span>
+												<h5 class="mb-0"><a href="#">{{i.First_Name}} {{i.Last_Name}}</a></h5>
+												<span class="text-body small"><i class="fas fa-fw fa-map-marker-alt me-1 mt-1"></i>{{i.Location}}</span>
 											</div>
 										</div>
 
@@ -131,7 +133,7 @@
 										<div class="d-sm-flex justify-content-between align-items-center">
 											<!-- Rating star -->
 											<h6 class="mb-2 mb-sm-0">
-												<i class="bi bi-calendar fa-fw text-orange me-2"></i><span class="text-body">Join at:</span> 29 Aug 2021
+												<i class="bi bi-calendar fa-fw text-orange me-2"></i><span class="text-body">Join at:</span> {{i.Date}}
 											</h6>
 											<!-- Buttons -->
 											<div class="text-end text-primary-hover">
@@ -147,8 +149,9 @@
 								</div>
 							</div>
 							<!-- Card item END -->
+							 {% endfor %}
 
-							<!-- Card item START -->
+							{% comment %} <!-- Card item START -->
 							<div class="col-md-6 col-xxl-4">
 								<div class="card bg-transparent border h-100"> 
 									<!-- Card header -->
@@ -554,6 +557,7 @@
 							<!-- Card item END -->
 						</div>
 					</div>
+					{% endcomment %}
 					<!-- Tabs content item END -->
 
 					<!-- Tabs content item START -->
@@ -902,8 +906,8 @@
 					<nav class="d-flex justify-content-center mb-0" aria-label="navigation">
 						<ul class="pagination pagination-sm pagination-primary-soft mb-0 pb-0 px-0">
 							<li class="page-item mb-0"><a class="page-link" href="#" tabindex="-1"><i class="fas fa-angle-left"></i></a></li>
-							<li class="page-item mb-0"><a class="page-link" href="#">1</a></li>
-							<li class="page-item mb-0 active"><a class="page-link" href="#">2</a></li>
+							<li class="page-item mb-0 active"><a class="page-link" href="#">1</a></li>
+							<li class="page-item mb-0"><a class="page-link" href="#">2</a></li>
 							<li class="page-item mb-0"><a class="page-link" href="#">3</a></li>
 							<li class="page-item mb-0"><a class="page-link" href="#"><i class="fas fa-angle-right"></i></a></li>
 						</ul>

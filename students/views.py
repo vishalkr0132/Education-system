@@ -22,74 +22,6 @@ def student_dashboard(request):
         context = {'Student': Student}
         return render(request, 'student-dashboard.html', context)
 
-# def student_profile(request):
-#     if request.user.is_anonymous:
-#         return redirect('/')
-    
-#     if request.method == 'POST':
-#         if 'profile_submit' in request.POST:
-#             existing_profile = students_sign_up.objects.filter(Email=request.user.email).first()
-#             if existing_profile:
-#                 form_data = {
-#                     'First_Name': request.POST.get('First_Name'),
-#                     'Last_Name': request.POST.get('Last_Name'),
-#                     'Location': request.POST.get('Location'),
-#                     'Phone': request.POST.get('Phone'),
-#                     'Gender': request.POST.get('Gender'),
-#                     'DOB': request.POST.get('DOB'),
-#                     'About': request.POST.get('About')
-#                 }
-#                 if 'Profile_Pic' in request.FILES:
-#                     profile_pic = request.FILES['Profile_Pic']
-#                     existing_profile.Profile_Pic = profile_pic
-#                 existing_profile.__dict__.update(form_data)
-#                 existing_profile.save()
-#             else:
-#                 profile_data = students_sign_up.objects.create(
-#                     Email=request.user.email,
-#                     First_Name=request.POST.get('First_Name'),
-#                     Last_Name=request.POST.get('Last_Name'),
-#                     Location=request.POST.get('Location'),
-#                     Phone=request.POST.get('Phone'),
-#                     Gender=request.POST.get('Gender'),
-#                     DOB=request.POST.get('DOB'),
-#                     About=request.POST.get('About')
-#                 )
-#                 if 'Profile_Pic' in request.FILES:
-#                     profile_data.Profile_Pic = request.FILES['Profile_Pic']
-#                 profile_data.save()
-#                 messages.success(request, 'Profile updated successfully!')
-#             return redirect('student_profile')
-        
-#         elif 'resume_submit' in request.POST:
-#             Resume_File = request.FILES.get('Resume')
-#             if Resume_File:
-#                 student_profile_instance = students_sign_up.objects.filter(Email=request.user.email).first()
-#                 if student_profile_instance:
-#                     existing_resume = Resumes.objects.filter(user="student_profile_instance").first()
-#                     if existing_resume:
-#                         existing_resume.resume = Resume_File
-#                         existing_resume.save()
-#                         messages.success(request, 'Resume updated successfully!')
-#                     else:
-#                         resume = Resumes.objects.create(user=student_profile_instance, Resume=Resume_File)
-#                         messages.success(request, 'Resume uploaded successfully!')
-#                         resume.save()
-#                 else:
-#                     messages.error(request, 'Student profile not found.')
-#             else:
-#                 messages.error(request, 'No resume file selected.')
-#             return redirect('student_profile')
-    
-#     else:
-#         username = request.user.username
-#         try:
-#             profile = students_sign_up.objects.filter(Email=username)
-#         except students_sign_up.DoesNotExist:
-#             profile = None
-#         context = {'profile': profile} 
-#         return render(request, 'student-profile.html', context)
-
 def student_profile(request):
     if request.user.is_anonymous:
         return redirect('/')
@@ -153,7 +85,8 @@ def student_profile(request):
         resume = Resumes.objects.filter(user=request.user).first()
         username = request.user.username
         try:
-            profile = students_sign_up.objects.filter(Email=username)
+            # profile = students_sign_up.objects.filter(Email=username)
+            profile = students_sign_up.objects.filter(user=request.user)
         except students_sign_up.DoesNotExist:
             profile = None
         context = {'profile': profile, "resume":resume } 

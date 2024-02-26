@@ -115,7 +115,7 @@
 
 			<!-- Main navbar START -->
 			<div class="navbar-collapse w-100 collapse" id="navbarCollapse">
-
+{% comment %} 
 				<!-- Nav Main menu START -->
 				<ul class="navbar-nav navbar-nav-scroll mx-auto">
 					<!-- Nav item 1 Demos -->
@@ -360,7 +360,7 @@
 						</ul>
 					</li>
 				</ul>
-				<!-- Nav Main menu END -->
+				<!-- Nav Main menu END --> {% endcomment %}
 
 				<!-- Nav Search START -->
 				<div class="nav my-3 my-xl-0 px-4 flex-nowrap align-items-center">
@@ -380,7 +380,7 @@
 			<!-- Profile START -->
 			<div class="dropdown ms-1 ms-lg-0">
 				<a class="avatar avatar-sm p-0" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
-					<img class="avatar-img rounded-circle" src="{% static 'docs/assets/images/avatar/01.jpg' %}" alt="avatar">
+					<img class="avatar-img rounded-circle" src="/media/{{ Name.Profile_Pic }}" alt="avatar">
 				</a>
 				<ul class="dropdown-menu dropdown-animation dropdown-menu-end shadow pt-3" aria-labelledby="profileDropdown">
 					<!-- Profile info -->
@@ -388,7 +388,7 @@
 						<div class="d-flex align-items-center">
 							<!-- Avatar -->
 							<div class="avatar me-3">
-								<img class="avatar-img rounded-circle shadow" src="{% static 'docs/assets/images/avatar/01.jpg' %}" alt="avatar">
+								<img class="avatar-img rounded-circle shadow" src="/media/{{ Name.Profile_Pic }}" alt="avatar">
 							</div>
                             <div>
                                 <div class="d-flex me-1">
@@ -458,7 +458,7 @@ Page Banner START -->
 						<!-- Avatar -->
 						<div class="col-auto">
 							<div class="avatar avatar-xxl position-relative mt-n3">
-								<img class="avatar-img rounded-circle border border-white border-3 shadow" src=" {% static 'docs/assets/images/avatar/09.jpg' %}" alt="">
+								<img class="avatar-img rounded-circle border border-white border-3 shadow" src="/media/{{ Name.Profile_Pic }}" alt="">
 								<span class="badge text-bg-success rounded-pill position-absolute top-50 start-100 translate-middle mt-4 mt-md-5 ms-n3 px-md-3">Pro</span>
 							</div>
 						</div>
@@ -526,16 +526,16 @@ Page content START -->
 						<div class="bg-dark border rounded-3 p-3 w-100">
 							<!-- Dashboard menu -->
 							<div class="list-group list-group-dark list-group-borderless collapse-list">
-								<a class="list-group-item active" href="student-dashboard.html"><i class="bi bi-ui-checks-grid fa-fw me-2"></i>Dashboard</a>
-								<a class="list-group-item" href="student-subscription.html"><i class="bi bi-card-checklist fa-fw me-2"></i>My Subscriptions</a>
-								<a class="list-group-item" href="student-course-list.html"><i class="bi bi-basket fa-fw me-2"></i>My Courses</a>
-								<a class="list-group-item" href="student-course-resume.html"><i class="far fa-fw fa-file-alt me-2"></i>Course Resume</a>
-								<a class="list-group-item" href="student-quiz.html"><i class="bi bi-question-diamond fa-fw me-2"></i>Quiz</a>
-								<a class="list-group-item" href="student-payment-info.html"><i class="bi bi-credit-card-2-front fa-fw me-2"></i>Payment Info</a>
-								<a class="list-group-item" href="student-bookmark.html"><i class="bi bi-cart-check fa-fw me-2"></i>Wishlist</a>
+								<a class="list-group-item active" href="/"><i class="bi bi-ui-checks-grid fa-fw me-2"></i>Dashboard</a>
+								<a class="list-group-item" href="student-subscription"><i class="bi bi-card-checklist fa-fw me-2"></i>My Subscriptions</a>
+								<a class="list-group-item" href="student-course-list"><i class="bi bi-basket fa-fw me-2"></i>My Courses</a>
+								<a class="list-group-item" href="student-course-resume"><i class="far fa-fw fa-file-alt me-2"></i>Course Resume</a>
+								<a class="list-group-item" href="student-quiz"><i class="bi bi-question-diamond fa-fw me-2"></i>Quiz</a>
+								<a class="list-group-item" href="student-payment-info"><i class="bi bi-credit-card-2-front fa-fw me-2"></i>Payment Info</a>
+								<a class="list-group-item" href="student-bookmark"><i class="bi bi-cart-check fa-fw me-2"></i>Wishlist</a>
 								<a class="list-group-item" href="student_profile"><i class="bi bi-pencil-square fa-fw me-2"></i>Edit Profile</a>
-								<a class="list-group-item" href="instructor-setting.html"><i class="bi bi-gear fa-fw me-2"></i>Settings</a>
-								<a class="list-group-item" href="instructor-delete-account.html"><i class="bi bi-trash fa-fw me-2"></i>Delete Profile</a>
+								<a class="list-group-item" href="instructor-setting"><i class="bi bi-gear fa-fw me-2"></i>Settings</a>
+								<a class="list-group-item" href="instructor-delete-account"><i class="bi bi-trash fa-fw me-2"></i>Delete Profile</a>
 								<a class="list-group-item text-danger bg-danger-soft-hover" href="logout"><i class="fas fa-sign-out-alt fa-fw me-2"></i>Sign Out</a>
 								<!-- Collapse menu -->
 								<a class="list-group-item" data-bs-toggle="collapse" href="#collapseauthentication" role="button" aria-expanded="false" aria-controls="collapseauthentication">

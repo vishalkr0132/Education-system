@@ -67,11 +67,13 @@ def admin_student_list(request):
         data={'Student':Student}
         return render(request,'admin-student-list.html',data)
     
-def admin_student_detail(request):
+def admin_student_detail(request, Pid):
     if request.user.is_anonymous:
         return redirect('/')
     else:
-        detail = students_sign_up.objects.all()
+        # email = students_sign_up.objects.get(id=Pid)
+        # email = email.Email
+        detail = students_sign_up.objects.filter(id=Pid)
         data = {'detail': detail}
         return render(request, 'admin-student-detail.html', data)
     

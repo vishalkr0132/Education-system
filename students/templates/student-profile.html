@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Eduport - LMS, Education and Course Theme</title>
+    <title>Student Profile</title>
 
     <!-- Meta Tags -->
     <meta charset="utf-8">
@@ -82,8 +82,17 @@
     <link rel="stylesheet" type="text/css" href="{% static 'assets/vendor/font-awesome/css/all.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}">
 
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/vendor/choices/css/choices.min' %}.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'assets/vendor/glightbox/css/glightbox.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'assets/vendor/quill/css/quill.snow.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'assets/vendor/stepper/css/bs-stepper.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'assets/vendor/overlay-scrollbar/css/overlayscrollbars.min.css' %}">
+
     <!-- Theme CSS -->
     <link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}">
+
+    {% comment %} Skills sets {% endcomment %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/choices.js/10.0.0/styles/choices.min.css" />
 
 </head>
 
@@ -102,6 +111,11 @@
                 <!-- Logo END -->
 
                 <!-- Responsive navbar toggler -->
+                {% if messages %} {{ message.tags }}
+			        <div class="alert alert-primary" role="alert">
+				    {% for message in messages %} {{ message }} {% endfor %}
+			        </div> 
+			    {% endif %}
                
                     {% for Data in profile %}
                 <!-- Profile START -->
@@ -218,8 +232,8 @@
 													<i class="bi bi-pencil"></i>
 												</button>
                                             </div>
-                                            <h6>degree</h6>
-                                            <h6>college</h6>
+                                            <h6>{{Education_data_form.Degree}}</h6>
+                                            <h6>{{Education_data_form.College_Name}}</h6>
                                             <h6><i class="bi me-1 bi-calendar2-check"></i>{{ Data.Date }}</h6>
                                         </div>
 
@@ -233,7 +247,7 @@
                                             </div>
 
                                             <div class="col-12 col-md-6 col-lg-6">
-                                                <p><i class="bi me-1 bi-telephone"></i>{{Data.Phone}}<i class="bi bi-check2-circle text-success"></i></p>
+                                                <p><i class="bi me-1 bi-telephone"></i>{{Data.Phone}} <i class="bi bi-check2-circle text-success"></i></p>
                                                 <p><i class="bi me-1 bi-envelope-check"></i>{{Data.Email}} <i class="bi bi-check2-circle text-success"></i></p>
                                             </div>
                                         </div>
@@ -390,7 +404,7 @@
                         <div class="modal-body">
                             <div class="mb-3">
                                 <label for="exampleFormControlTextarea1" class="form-label">Enter your bio..</label>
-                                <textarea class="form-control" name="headline" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                <textarea class="form-control" name="Resume_headline_data" id="exampleFormControlTextarea1" rows="3"></textarea>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -435,12 +449,12 @@
                         <div class="modal-body">
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">College</label>
-                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Excel Engineering College" name="college">
+                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your College Name" value="{{Education_data_form.College_Name}}" name="College_Name">
                             </div>
                             <div class="row">
                                 <div class="col-lg-6 mb-3">
                                     <label class="form-label">Start year</label>
-                                    <select class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm" data-search-enabled="true" name="start_year">
+                                    <select class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm" data-search-enabled="true" name="College_Start_Year" value="{{Education_data_form.College_Start_Year}}">
 									<option value="">Select year</option>
 									<option>1980</option>
 									<option>1981</option>
@@ -490,7 +504,7 @@
                                 </div>
                                 <div class="col-lg-6 mb-3">
                                     <label class="form-label">End year</label>
-                                    <select class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm" data-search-enabled="true" name="end_year">
+                                    <select class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm" data-search-enabled="true" name="College_End_Year" value="{{Education_data_form.College_End_Year}}">
 									<option value="">Select year</option>
 									<option>1980</option>
 									<option>1981</option>
@@ -549,17 +563,17 @@
                             <div class="row">
                                 <div class="mb-3 col-lg-6">
                                     <label for="exampleInputEmail2" class="form-label">Degree</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="BE/ B.Tech" name="degree">
+                                    <input type="text" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="BE/ B.Tech" name="Degree" value="{{Education_data_form.Degree}}">
                                 </div>
                                 <div class="mb-3 col-lg-6">
                                     <label for="exampleInputEmail3" class="form-label">Stream</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail3" aria-describedby="emailHelp" placeholder="Computer Science and Engineering" name="stream">
+                                    <input type="text" class="form-control" id="exampleInputEmail3" aria-describedby="emailHelp" placeholder="Computer Science and Engineering" name="Stream" value="{{Education_data_form.Stream}}">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="mb-3 col-md-6">
                                     <label class="form-label">Grading system</label>
-                                    <select class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm" data-search-enabled="true" name="grading_system">
+                                    <select class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm" data-search-enabled="true" name="Grading_System" value="{{Education_data_form.Grading_System}}">
 									<option value="">CGPA (out of 10)</option>
 									<option>5.0</option>
 									<option>6.0</option>
@@ -571,13 +585,13 @@
                                 </div>
                                 <div class="mb-3 col-lg-6">
                                     <label for="exampleInputPassword1" class="form-label">Performance/ percentage</label>
-                                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="6.7, 76%" name="performance">
+                                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="6.7, 76%" name="Performance" value="{{Education_data_form.Performance}}">
                                 </div>
                             </div>
 
                             <div class="col-lg-6 mb-3">
                                 <label class="form-label">Course type</label>
-                                <select class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm" data-search-enabled="true" name="course_type">
+                                <select class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm" data-search-enabled="true" name="Course_Type" value="{{Education_data_form.Course_Type}}">
 								<option value="">Select course type</option>
 								<option>Full time</option>
 								<option>Part time</option>
@@ -589,7 +603,7 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 
-                            <button type="submit" class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" name="education_submit">Save</button>
+                            <button type="submit" class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" name="Education_Submit">Save</button>
 
                         </div>
                     </form>
@@ -607,25 +621,24 @@
                         <div class="modal-header">
                             <div style="display: flex !important; flex-direction: column !important;">
                                 <h1 class="modal-title fs-5" id="staticBackdropLabel">Languages known</h1>
-                                <p>Strengthen your resume by letting recruiters know you can communicate in multiple languages
-                                </p>
+                                <p>Strength your resume by letting recruiters know you can communicate in multiple languages</p>
                             </div>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <div class="mb-3">
-                                <label class="form-label">Languages</label>
-                                <select class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm" data-search-enabled="true" name="languages_toungh">
+                                <label class="form-label">Language</label>
+                                <select class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm" data-search-enabled="true" name="Communication_Language">
 								<option value="">Select Language</option>
-								<option>English</option>
 								<option>Hindi</option>
+								<option>English</option>
 								<option>Others</option>
 							</select>
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" name="language_submit" class="btn btn-primary">Save</button>
+                            <button type="submit" name="Language_Submit" class="btn btn-primary">Save</button>
                         </div>
                     </form>
                 </div>
@@ -637,114 +650,117 @@
         <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <div style="display: flex !important; flex-direction: column !important;">
-                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Internship</h1>
-                            <p>Show your professional learnings</p>
-                        </div>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Company name *</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter the name of the company" name="intern_company">
-                        </div>
-                        <div class="row">
-                            <label class="form-label">Internship duration</label>
-                            <div class="row col-lg-6">
-                                <div class="col-lg-6 mb-3">
-                                    <select class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm" data-search-enabled="true" name="start_year">
-									<option value="">Month</option>
-									<option>Jan</option>
-									<option>Feb</option>
-									<option>Mar</option>
-									<option>Apr</option>
-									<option>May</option>
-									<option>Jun</option>
-									<option>Jul</option>
-									<option>Aug</option>
-									<option>Sep</option>
-									<option>Oct</option>
-									<option>Nov</option>
-									<option>Dec</option>
-								</select>
-                                </div>
-                                <div class="col-lg-6 mb-3">
-                                    <select class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm" data-search-enabled="true" name="start_year">
-									<option value="">Year</option>
-									<option>2013</option>
-									<option>2014</option>
-									<option>2015</option>
-									<option>2016</option>
-									<option>2017</option>
-									<option>2018</option>
-									<option>2019</option>
-									<option>2020</option>
-									<option>2021</option>
-									<option>2022</option>
-									<option>2023</option>
-									<option>2024</option>
-								</select>
-                                </div>
+                        <div class="modal-header">
+                            <div style="display: flex !important; flex-direction: column !important;">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Internship</h1>
+                                <p>Show your professional learnings</p>
                             </div>
-                            <!-- <p>to</p> -->
-                            <div class="row col-lg-6">
-                                <div class="col-lg-6 mb-3">
-                                    <select class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm" data-search-enabled="true" name="start_year">
-									<option value="">Month</option>
-									<option>Jan</option>
-									<option>Feb</option>
-									<option>Mar</option>
-									<option>Apr</option>
-									<option>May</option>
-									<option>Jun</option>
-									<option>Jul</option>
-									<option>Aug</option>
-									<option>Sep</option>
-									<option>Oct</option>
-									<option>Nov</option>
-									<option>Dec</option>
-								</select>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="companyname" class="form-label">Company name *</label>
+                                <input type="text" class="form-control" id="companyname" aria-describedby="emailHelp" placeholder="Enter the name of the company" name="Intern_Company_Name">
+                            </div>
+                            <div class="row">
+                                <label class="form-label">Internship duration</label>
+                                <div class="row col-lg-6">
+                                    <div class="col-lg-6 mb-3">
+                                        <select class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm" data-search-enabled="true" name="Intern_Start_Month">
+                                        <option value="">Month</option>
+                                        <option>Jan</option>
+                                        <option>Feb</option>
+                                        <option>Mar</option>
+                                        <option>Apr</option>
+                                        <option>May</option>
+                                        <option>Jun</option>
+                                        <option>Jul</option>
+                                        <option>Aug</option>
+                                        <option>Sep</option>
+                                        <option>Oct</option>
+                                        <option>Nov</option>
+                                        <option>Dec</option>
+                                    </select>
+                                    </div>
+                                    <div class="col-lg-6 mb-3">
+                                        <select class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm" data-search-enabled="true" name="Intern_Start_Year">
+                                        <option value="">Year</option>
+                                        <option>2013</option>
+                                        <option>2014</option>
+                                        <option>2015</option>
+                                        <option>2016</option>
+                                        <option>2017</option>
+                                        <option>2018</option>
+                                        <option>2019</option>
+                                        <option>2020</option>
+                                        <option>2021</option>
+                                        <option>2022</option>
+                                        <option>2023</option>
+                                        <option>2024</option>
+                                    </select>
+                                    </div>
                                 </div>
-                                <div class="col-lg-6 mb-3">
-                                    <select class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm" data-search-enabled="true" name="end_year">
-									<option value="">Year</option>
-									<option>2015</option>
-									<option>2016</option>
-									<option>2017</option>
-									<option>2018</option>
-									<option>2019</option>
-									<option>2020</option>
-									<option>2021</option>
-									<option>2022</option>
-									<option>2023</option>
-									<option>2024</option>
-								</select>
+                                <!-- <p>to</p> -->
+                                <div class="row col-lg-6">
+                                    <div class="col-lg-6 mb-3">
+                                        <select class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm" data-search-enabled="true" name="Intern_End_Month">
+                                        <option value="">Month</option>
+                                        <option>Jan</option>
+                                        <option>Feb</option>
+                                        <option>Mar</option>
+                                        <option>Apr</option>
+                                        <option>May</option>
+                                        <option>Jun</option>
+                                        <option>Jul</option>
+                                        <option>Aug</option>
+                                        <option>Sep</option>
+                                        <option>Oct</option>
+                                        <option>Nov</option>
+                                        <option>Dec</option>
+                                    </select>
+                                    </div>
+                                    <div class="col-lg-6 mb-3">
+                                        <select class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm" data-search-enabled="true" name="Intern_End_Year">
+                                        <option value="">Year</option>
+                                        <option>2015</option>
+                                        <option>2016</option>
+                                        <option>2017</option>
+                                        <option>2018</option>
+                                        <option>2019</option>
+                                        <option>2020</option>
+                                        <option>2021</option>
+                                        <option>2022</option>
+                                        <option>2023</option>
+                                        <option>2024</option>
+                                    </select>
+                                    </div>
                                 </div>
+
+                            </div>
+                            <div class="mb-3 col-lg-12">
+                                <label for="internprojectname" class="form-label">Project name</label>
+                                <input type="text" class="form-control" id="internprojectname" aria-describedby="emailHelp" placeholder="Enter the name of the project you undertook" name="Intern_Project_Name">
+                            </div>
+                            <div class="mb-3 col-lg-12">
+                                <label for="internprojectdesc" class="form-label">Describe what you did at internship</label>
+                                <textarea type="text" class="form-control" id="internprojectdesc" aria-describedby="emailHelp" placeholder="Enter the responsibilities you held, anything you accomplished or learned while serving in your internship." name="Intern_Desc"> </textarea>
                             </div>
 
-                        </div>
-                        <div class="mb-3 col-lg-12">
-                            <label for="exampleInputEmail2" class="form-label">Project name</label>
-                            <input type="text" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="Enter the name of the project you undertook" name="project_name">
-                        </div>
-                        <div class="mb-3 col-lg-12">
-                            <label for="exampleInputEmail3" class="form-label">Describe what you did at internship</label>
-                            <textarea type="text" class="form-control" id="exampleInputEmail3" aria-describedby="emailHelp" placeholder="Enter the responsibilities you held, anything you accomplished or learned while serving in your internship." name="stream"> </textarea>
-                        </div>
-
-                        <div class="mb-3 col-lg-12">
-                            <label for="exampleInputEmail3" class="form-label">Project URL
-							(optional)</label>
-                            <input type="text" class="form-control" id="exampleInputEmail3" aria-describedby="emailHelp" placeholder="Enter the website link of the project." name="project_url">
-                        </div>
+                            <div class="mb-3 col-lg-12">
+                                <label for="internprojecturl" class="form-label">Project URL
+                                (optional)</label>
+                                <input type="text" class="form-control" id="internprojecturl" aria-describedby="emailHelp" placeholder="Enter the website link of the project." name="Intern_Project_Url">
+                            </div>
 
 
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save</button>
-                    </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" name="Inter_submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -753,6 +769,8 @@
         <div class="modal fade" id="staticBackdrop3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
                     <div class="modal-header">
                         <div style="display: flex !important; flex-direction: column !important;">
                             <h1 class="modal-title fs-5" id="staticBackdropLabel">Project</h1>
@@ -763,13 +781,13 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Project name *</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter the name of the company" name="intern_company">
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter the name of the company" name="Project_Name">
                         </div>
                         <div class="row">
                             <label class="form-label">Project duration</label>
                             <div class="row col-lg-6">
                                 <div class="col-lg-6 mb-3">
-                                    <select class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm" data-search-enabled="true" name="start_year">
+                                    <select class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm" data-search-enabled="true" name="Project_Start_Month">
 									<option value="">Month</option>
 									<option>Jan</option>
 									<option>Feb</option>
@@ -786,7 +804,7 @@
 								</select>
                                 </div>
                                 <div class="col-lg-6 mb-3">
-                                    <select class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm" data-search-enabled="true" name="start_year">
+                                    <select class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm" data-search-enabled="true" name="Project_Start_Year">
 									<option value="">Year</option>
 									<option>2013</option>
 									<option>2014</option>
@@ -806,7 +824,7 @@
                             <!-- <p>to</p> -->
                             <div class="row col-lg-6">
                                 <div class="col-lg-6 mb-3">
-                                    <select class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm" data-search-enabled="true" name="start_year">
+                                    <select class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm" data-search-enabled="true" name="Project_End_Month">
 									<option value="">Month</option>
 									<option>Jan</option>
 									<option>Feb</option>
@@ -823,7 +841,7 @@
 								</select>
                                 </div>
                                 <div class="col-lg-6 mb-3">
-                                    <select class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm" data-search-enabled="true" name="end_year">
+                                    <select class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm" data-search-enabled="true" name="Project_End_Year">
 									<option value="">Year</option>
 									<option>2015</option>
 									<option>2016</option>
@@ -842,21 +860,22 @@
                         </div>
                         <div class="mb-3 col-lg-12">
                             <label for="exampleInputEmail3" class="form-label">Describe what you did at internship</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" id="exampleInputEmail3" aria-describedby="emailHelp" placeholder="Enter the responsibilities you held, anything you accomplished or learned while serving in your internship." name="stream"> </textarea>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" id="exampleInputEmail3" aria-describedby="emailHelp" placeholder="Enter the responsibilities you held, anything you accomplished or learned while serving in your internship." name="Project_Desc"> </textarea>
                         </div>
 
                         <div class="mb-3 col-lg-12">
                             <label for="exampleInputEmail3" class="form-label">Project URL
 							(optional)</label>
-                            <input type="text" class="form-control" id="exampleInputEmail3" aria-describedby="emailHelp" placeholder="Enter the website link of the project." name="project_url">
+                            <input type="text" class="form-control" id="exampleInputEmail3" aria-describedby="emailHelp" placeholder="Enter the website link of the project." name="Project_Url">
                         </div>
 
 
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save</button>
+                        <button type="submit" name="Project_submit" class="btn btn-primary">Save</button>
                     </div>
+                </form>
                 </div>
             </div>
         </div>
@@ -865,6 +884,8 @@
         <div class="modal fade" id="staticBackdrop4" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
                     <div class="modal-header">
                         <div style="display: flex !important; flex-direction: column !important;">
                             <h1 class="modal-title fs-5" id="staticBackdropLabel">Certifications</h1>
@@ -875,24 +896,24 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Certification name *</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Please enter your certification name" name="intern_company">
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Please enter your certification name" name="Certificate_Name">
                         </div>
 
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Certification completion ID</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Please mention your score completion ID" name="intern_company">
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Please mention your score completion ID" name="Certificate_ID">
                         </div>
 
                         <div class="mb-3 col-lg-12">
                             <label for="exampleInputEmail3" class="form-label">Certification URL (optional)</label>
-                            <input type="text" class="form-control" id="exampleInputEmail3" aria-describedby="emailHelp" placeholder="Please mention your completion URL." name="project_url">
+                            <input type="text" class="form-control" id="exampleInputEmail3" aria-describedby="emailHelp" placeholder="Please mention your completion URL." name="Certificate_URL">
                         </div>
 
                         <div class="row">
                             <label class="form-label">Certification validity</label>
                             <div class="row col-lg-6">
                                 <div class="col-lg-6 mb-3">
-                                    <select class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm" data-search-enabled="true" name="start_year">
+                                    <select class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm" data-search-enabled="true" name="Certificate_start_Month">
 									<option value="">Month</option>
 									<option>Jan</option>
 									<option>Feb</option>
@@ -909,7 +930,7 @@
 								</select>
                                 </div>
                                 <div class="col-lg-6 mb-3">
-                                    <select class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm" data-search-enabled="true" name="start_year">
+                                    <select class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm" data-search-enabled="true" name="Certificate_start_Year">
 									<option value="">Year</option>
 									<option>2013</option>
 									<option>2014</option>
@@ -929,7 +950,7 @@
                             <!-- <p>to</p> -->
                             <div class="row col-lg-6">
                                 <div class="col-lg-6 mb-3">
-                                    <select class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm" data-search-enabled="true" name="start_year">
+                                    <select class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm" data-search-enabled="true" name="Certificate_End_Month">
 									<option value="">Month</option>
 									<option>Jan</option>
 									<option>Feb</option>
@@ -946,7 +967,7 @@
 								</select>
                                 </div>
                                 <div class="col-lg-6 mb-3">
-                                    <select class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm" data-search-enabled="true" name="end_year">
+                                    <select class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm" data-search-enabled="true" name="Certificate_End_Year">
 									<option value="">Year</option>
 									<option>2015</option>
 									<option>2016</option>
@@ -967,8 +988,9 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save</button>
+                        <button type="submit" name="Certifiace_submit" class="btn btn-primary">Save</button>
                     </div>
+                </form>
                 </div>
             </div>
         </div>
@@ -977,6 +999,8 @@
         <div class="modal fade" id="staticBackdrop5" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
                     <div class="modal-header">
                         <div style="display: flex !important; flex-direction: column !important;">
                             <h1 class="modal-title fs-5" id="staticBackdropLabel">Competitive exams</h1>
@@ -987,7 +1011,7 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Competitive exam *</label>
-                            <select class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm" data-search-enabled="true" name="start_year">
+                            <select class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm" data-search-enabled="true" name="Competitive_Name">
 							<option value="">Select Exam</option>
 							<option>JEE Mains</option>
 							<option>JEE Advance</option>
@@ -1007,23 +1031,24 @@
 
                         <div class="mb-3 col-lg-3">
                             <label for="exampleInputEmail3" class="form-label">Score</label>
-                            <input type="text" class="form-control" id="exampleInputEmail3" aria-describedby="emailHelp" placeholder="Score" name="project_url">
+                            <input type="text" class="form-control" id="exampleInputEmail3" aria-describedby="emailHelp" placeholder="Score" name="Competitive_score">
                         </div>
-
-
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save</button>
+                        <button type="submit" name="Competative_Exam" class="btn btn-primary">Save</button>
                     </div>
+                </form>
                 </div>
             </div>
         </div>
 
-        <!-- Employment exams modal -->
+        <!-- Employment modal -->
         <div class="modal fade" id="staticBackdrop6" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
                     <div class="modal-header">
                         <div style="display: flex !important; flex-direction: column !important;">
                             <h1 class="modal-title fs-5" id="staticBackdropLabel">Employment details</h1>
@@ -1036,7 +1061,7 @@
                         <div class="row">
                             <label class="form-label">Total work experience</label>
                             <div class="col-lg-6 mb-3">
-                                <select class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm" data-search-enabled="true" name="start_year">
+                                <select class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm" data-search-enabled="true" name="Exp_Year">
 								<option value="">Year</option>
 								<option>2021</option>
 								<option>2022</option>
@@ -1045,28 +1070,37 @@
 							</select>
                             </div>
                             <div class="col-lg-6 mb-3">
-                                <select class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm" data-search-enabled="true" name="end_year">
+                                <select class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm" data-search-enabled="true" name="Exp_Month">
 								<option value="">Month</option>
-								<option>2029</option>
-								<option>2030</option>
-								<option>2031</option>
+								<option>1</option>
+								<option>2</option>
+								<option>3</option>
+								<option>4</option>
+								<option>5</option>
+								<option>6</option>
+								<option>7</option>
+								<option>8</option>
+								<option>9</option>
+								<option>10</option>
+								<option>11</option>
+								<option>12</option>
 							</select>
                             </div>
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Company name</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter the name of the company you worked at" name="college">
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter the name of the company you worked at" name="Work_Company_Name">
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Designation</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter the designation you held" name="college">
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter the designation you held" name="Work_Designation">
                         </div>
 
                         <div class="row">
                             <label class="form-label">Working since</label>
                             <div class="row col-lg-6">
                                 <div class="col-lg-6 mb-3">
-                                    <select class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm" data-search-enabled="true" name="start_year">
+                                    <select class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm" data-search-enabled="true" name="Work_start_Month">
 									<option value="">Month</option>
 									<option>Jan</option>
 									<option>Feb</option>
@@ -1083,7 +1117,7 @@
 								</select>
                                 </div>
                                 <div class="col-lg-6 mb-3">
-                                    <select class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm" data-search-enabled="true" name="start_year">
+                                    <select class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm" data-search-enabled="true" name="Work_start_Year">
 									<option value="">Year</option>
 									<option>2013</option>
 									<option>2014</option>
@@ -1103,7 +1137,7 @@
                             <!-- <p>to</p> -->
                             <div class="row col-lg-6">
                                 <div class="col-lg-6 mb-3">
-                                    <select class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm" data-search-enabled="true" name="start_year">
+                                    <select class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm" data-search-enabled="true" name="Work_End_Month">
 									<option value="">Month</option>
 									<option>Jan</option>
 									<option>Feb</option>
@@ -1120,7 +1154,7 @@
 								</select>
                                 </div>
                                 <div class="col-lg-6 mb-3">
-                                    <select class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm" data-search-enabled="true" name="end_year">
+                                    <select class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm" data-search-enabled="true" name="Work_End_Year">
 									<option value="">Year</option>
 									<option>2015</option>
 									<option>2016</option>
@@ -1140,14 +1174,15 @@
 
                         <div class="mb-3 col-lg-12">
                             <label for="exampleInputEmail3" class="form-label">Describe what you did at work</label>
-                            <textarea type="text" class="form-control" id="exampleInputEmail3" aria-describedby="emailHelp" placeholder="Enter the responsibilities you held, anything you accomplished or learned while serving in your internship." name="stream"> </textarea>
+                            <textarea type="text" class="form-control" id="exampleInputEmail3" aria-describedby="emailHelp" placeholder="Enter the responsibilities you held, anything you accomplished or learned while serving in your internship." name="Work_Desc"> </textarea>
                         </div>
 
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save</button>
+                        <button type="submit" name="Work_Submit" class="btn btn-primary">Save</button>
                     </div>
+                </form>
                 </div>
             </div>
         </div>
@@ -1156,6 +1191,8 @@
         <div class="modal fade" id="staticBackdrop7" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
                     <div class="modal-header">
                         <div style="display: flex !important; flex-direction: column !important;">
                             <h1 class="modal-title fs-5" id="staticBackdropLabel">Employment details</h1>
@@ -1167,22 +1204,25 @@
 
                         <div class="mb-3 col-lg-12">
                             <label for="exampleInputEmail3" class="form-label">Describe what you did at work</label>
-                            <textarea type="text" class="form-control" id="exampleInputEmail3" aria-describedby="emailHelp" name="stream"> </textarea>
+                            <textarea type="text" class="form-control" id="exampleInputEmail3" aria-describedby="emailHelp" name="work_desc"> </textarea>
                         </div>
 
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save</button>
+                        <button type="submit" name="Award_submit" class="btn btn-primary">Save</button>
                     </div>
+                </form>
                 </div>
             </div>
         </div>
 
-        <!-- Awards modal -->
+        <!-- Academic modal -->
         <div class="modal fade" id="staticBackdrop8" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
                     <div class="modal-header">
                         <div style="display: flex !important; flex-direction: column !important;">
                             <h1 class="modal-title fs-5" id="staticBackdropLabel">Academic achievements</h1>
@@ -1194,14 +1234,16 @@
 
                         <div class="mb-3 col-lg-12">
                             <label for="exampleInputEmail3" class="form-label">Describe what you did at work</label>
-                            <textarea class="form-control" rows="2" id="exampleInputEmail3" aria-describedby="emailHelp" name="stream"> </textarea>
+                            <textarea class="form-control" rows="2" id="exampleInputEmail3" aria-describedby="emailHelp" name="Acadmic_desc"> </textarea>
                         </div>
 
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save</button>
+                        <button type="submit" name="Acadmic_Achive" class="btn btn-primary">Save</button>
                     </div>
+                </form>
+
                 </div>
             </div>
         </div>
@@ -1226,7 +1268,7 @@ Page content START -->
                                 <div class="bg-dark border rounded-3 pb-0 p-3 w-100">
                                     <!-- Dashboard menu -->
                                     <div class="list-group list-group-dark list-group-borderless">
-                                        <a class="list-group-item" href="/"><i
+                                        <a class="list-group-item" href="instructor-dashboard.html"><i
 													class="bi bi-ui-checks-grid fa-fw me-2"></i>Dashboard</a>
                                         <a class="list-group-item" href="instructor-manage-course.html"><i
 													class="bi bi-basket fa-fw me-2"></i>My Courses</a>
@@ -1273,15 +1315,16 @@ Page content START -->
                                         <div class="mb-3">
                                             <div class="d-flex align-items-center">
                                                 <label class="position-relative me-4" for="uploadfile-1" title="Replace this resume">
-                                                    <P>download your Resume  <a href="{{ resume.resume.url}}">{{resume.resume.name}}</a></P>
-
+                                                        {% comment %} <p><a href="{{ resume.resume.url }}"><i class="bi bi-download text-white"></i></a>
+                                                          </p> {% endcomment %}
+                                                          <p><a href="{{ resume.resume.url }}"> {{ resume.resume.url }} <i class="bi bi-download me-4 text-white"></i></a>  </p>
 														<input type="file" name="Resume">
-
 														<!-- Remove btn -->
-														{% comment %} <button type="button" class="uploadremove"
+														<button type="button" class="uploadremove"
 															style="background-color: transparent;">
-															<a href="/delete-resume-pdf/{{ resume.resume.id }}/"><i class="bi bi-trash text-warning"></i></a>
-														</button> {% endcomment %}
+															<a href="/delete-resume-pdf/{{ resume_form.instance.id }}/"><i
+																	class="bi bi-trash text-warning"></i></a>
+														</button>
 													</label>
                                             </div>
                                         </div>
@@ -1294,10 +1337,6 @@ Page content START -->
                                     <button type="submit" name="resume_submit" class="btn btn-primary mb-0">
 											Upload Resume
 										</button>
-                                    <button type="button" onclick="window.location.href="{{ resume.resume.url }}" class="uploadremove" style="background-color: transparent;">
-											<i class="bi bi-download text-white"></i>
-										</button>
-
                                 </div>
                             </div>
                         </form>
@@ -1307,7 +1346,7 @@ Page content START -->
                             <div class="card-body">
                                 <div class="col-12">
                                     <label class="form-label">Resume headline *</label>
-                                    <p>Resume Heading</p>
+                                    <p>{{ Resume_headline.Resume_headline_data }}</p>
                                 </div>
                             </div>
 
@@ -1320,14 +1359,14 @@ Page content START -->
                             </div>
                         </div>
 
+                        <!-- Education -->
                         <div class="card bg-transparent border rounded-3 mt-2">
-                            <!-- Education -->
                             <div class="card-body">
                                 <div class="col-12">
                                     <label class="form-label">Education</label>
-                                    <h6>{{education_data.degree}} from {{education_data.college}} <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModalToggle2"><i
+                                    <h6>{{Education_data_form.Degree}} from {{Education_data_form.College_Name}} <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModalToggle2"><i
 													class="bi bi-pencil"></i></a> </h6>
-                                    <p style="margin-top: -10px !important;">Graduating in {{education_data.end_year}}, Full Time
+                                    <p style="margin-top: -10px !important;">Graduating in {{Education_data_form.College_End_Year}}, Full Time
                                     </p>
                                 </div>
                             </div>
@@ -1340,27 +1379,70 @@ Page content START -->
                             </div>
                         </div>
 
+                        {% comment %} IT skills {% endcomment %}
+
                         <div class="card bg-transparent border rounded-3 mt-2 p-4">
                             <!-- IT skills section -->
                             <div class="col-md-12">
                                 <label class="form-label">IT Skills</label>
-                                <select class="form-select js-choice border-0 z-index-9 bg-transparent" multiple="multiple" aria-label=".form-select-sm" data-max-item-count="200" data-remove-item-button="true">
-										<option value>Select language</option>
-										<option selected>Javascript</option>
-										<option selected>German</option>
-										<option selected>French</option>
-										<option selected>C</option>
-										<option selected>C++</option>
-										<option selected>Java</option>
-										<option selected>React js</option>
-										<option>Node js</option>
-										<option>MongoDB</option>
-										<option>Python</option>
-										<option>Django</option>
-										<option>Flask</option>
-										<option selected>R</option>
-									</select>
-                            </div>
+                                <select id="it-skills" class="form-select js-choice border-0 z-index-9 bg-transparent" multiple="multiple" aria-label=".form-select-sm" data-max-item-count="500" data-remove-item-button="true">
+                                    <option value="">Select IT Skills</option>
+                                    <option>HTML</option>
+                                    <option>CSS</option>
+                                    <option>Javascript</option>
+                                    <option>React.JS</option>
+                                    <option>MongoDB</option>
+                                    <option>Node.JS</option>
+                                    <option>Express.JS</option>
+                                    <option>Bootstrap</option>
+                                    <option>Material UI</option>
+                                    <option>Java</option>
+                                    <option>C</option>
+                                    <option>C++</option>
+                                    <option>Python</option>
+                                    <option>Go lang</option>
+                                    <option>Flutter</option>
+                                    <option>C#</option>
+                                    <option>Ruby</option>
+                                    <option>Swift</option>
+                                    <option>Kotlin</option>
+                                    <option>PHP</option>
+                                    <option>SQL</option>
+                                    <option>Angular</option>
+                                    <option>Vue.js</option>
+                                    <option>Django</option>
+                                    <option>Flask</option>
+                                    <option>Rails</option>
+                                    <option>Kotlin</option>
+                                    <option>Android</option>
+                                    <option>SQLite</option>
+                                    <option>Amazon Web Services (AWS)</option>
+                                    <option>Microsoft Azure</option>
+                                    <option>Docker</option>
+                                    <option>Machine Learning</option>
+                                    <option>Data Analysis</option>
+                                    <option>Computer Vision</option>
+                                    <option>Reinforcement Learning</option>
+                                    <option>Selenium</option>
+                                    <option>JUnit</option>
+                                    <option>Git</option>
+                                    <option>GitHub</option>
+                                    <!-- Newly added skills -->
+                                    <option>Ethical Hacking</option>
+                                    <option>Penetration Testing</option>
+                                    <option>Security Auditing</option>
+                                    <option>Incident Response</option>
+                                    <option>Natural Language Processing (NLP)</option>
+                                    <option>Statistical Analysis</option>
+                                    <option>Data Visualization</option>
+                                    <option>Robot Operating System (ROS)</option>
+                                    <option>Smart Contracts (Solidity)</option>
+                                    <option>Distributed Ledger Technology</option>
+                                    <option>IoT Protocols (MQTT, CoAP)</option>
+                                    <option>Embedded Systems Programming</option>
+                                    <!-- End of newly added skills -->
+                                </select>
+                            </div>                            
                         </div>
 
                         <!-- Languages add -->
@@ -1369,7 +1451,7 @@ Page content START -->
                                 <div class="col-12 d-flex justify-content-between">
                                     <div class="row">
                                         <label class="form-label">Languages</label>
-                                        <p>{{language_form.languages_toungh}}</p>
+                                        <h6>{{Communication_data.Communication_Language}}</h6>
                                     </div>
                                     <div>
                                         <button class="btn btn-sm btn-light mb-0" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">
@@ -1386,8 +1468,18 @@ Page content START -->
                                 <div class="col-12 d-flex justify-content-between">
                                     <div>
                                         <label class="form-label">Internship</label>
-                                        <p>Talk about the company you interned at, what projects you undertook and what special skills you learned</p>
+                                        <h6>
+                                            {{Intern_data.Intern_Company_Name}}<a href="#" data-bs-toggle="modal"
+                                              data-bs-target="#staticBackdrop2"><i class="bi bi-pencil mx-3"></i></a>
+                                          </h6>
+                                          <p style="margin-top: -10px !important">
+                                            {{Intern_data.Intern_Start_Month}}
+                                            {{Intern_data.Intern_Start_Year}} to
+                                            {{Intern_data.Intern_End_Month}}
+                                            {{Intern_data.Intern_End_Year}}
+                                          </p>
                                     </div>
+
                                     <div>
                                         <button class="btn btn-sm btn-light mb-0" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
 												<i class="bi bi-plus me-1"></i>Add
@@ -1401,10 +1493,23 @@ Page content START -->
                         <div class="card bg-transparent border rounded-3 mt-2">
                             <div class="card-body">
                                 <div class="col-12 d-flex justify-content-between">
-                                    <label class="form-label">Projects</label>
-                                    <button class="btn btn-sm btn-light mb-0" data-bs-toggle="modal" data-bs-target="#staticBackdrop3">
+                                    <div>
+                                        <label class="form-label">Projects</label>
+                                        <h6>
+                                          {{ Project_data.Project_Name }}
+                                          <a href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop3"><i
+                                              class="bi bi-pencil mx-3"></i></a>
+                                        </h6>
+                                        <p style="margin-top: -10px !important">
+                                          {{ Project_data.Project_Start_Month }} {{ Project_data.Project_Start_Year }} to 
+                                          {{ Project_data.Project_End_Month }} {{ Project_data.Project_End_Year }}
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <button class="btn btn-sm btn-light mb-0" data-bs-toggle="modal" data-bs-target="#staticBackdrop3">
 											<i class="bi bi-plus me-1"></i>Add
-										</button>
+                                    </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1418,6 +1523,7 @@ Page content START -->
                                         <p>
                                             Talk about any certified courses that you completed
                                         </p>
+                                        <h6>{{Certificate_data.Certificate_Name}}</h6>
                                     </div>
 
                                     <div>
@@ -1436,8 +1542,9 @@ Page content START -->
 
                                     <div>
                                         <label class="form-label">Competitive exams</label>
-                                        <p>Talk about any competitive exam that you appeared for and the rank received
-                                        </p>
+                                        <p>Talk about any competitive exam that you appeared for and the rank received</p>
+                                        <h6>{{Competative_data.Competitive_Name}} </h6>
+                                        <h6>Got score {{Competative_data.Competitive_score}}</h6>
                                     </div>
                                     <div>
                                         <button class="btn btn-sm btn-light mb-0" data-bs-toggle="modal" data-bs-target="#staticBackdrop5">
@@ -1473,6 +1580,7 @@ Page content START -->
                                         <label class="form-label">Awards </label>
                                         <p>Talk about any academic achievement whether in college or school that deserves a mention
                                         </p>
+                                        <h6>{{Award_data.work_desc}}</h6>
                                     </div>
                                     <div>
                                         <button class="btn btn-sm btn-light mb-0" data-bs-toggle="modal" data-bs-target="#staticBackdrop7">
@@ -1487,10 +1595,15 @@ Page content START -->
                         <div class="card bg-transparent border rounded-3 mt-2">
                             <div class="card-body">
                                 <div class="col-12 d-flex justify-content-between">
-                                    <label class="form-label">Academic achievements </label>
-                                    <button class="btn btn-sm btn-light mb-0" data-bs-toggle="modal" data-bs-target="#staticBackdrop8">
+                                    <div>
+                                        <label class="form-label">Academic achievements </label>
+                                    <h6>{{Acadmic_data.Acadmic_desc}}</h6>
+                                    </div>
+                                    <div>
+                                        <button class="btn btn-sm btn-light mb-0" data-bs-toggle="modal" data-bs-target="#staticBackdrop8">
 											<i class="bi bi-plus me-1"></i>Add
 										</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1770,9 +1883,39 @@ Footer START -->
 
     <!-- Bootstrap JS -->
     <script src="{% static 'assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <!-- Vendors -->
+    <script src="{% static 'assets/vendor/choices/js/choices.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/glightbox/js/glightbox.js' %}"></script>
+    <script src="{% static 'assets/vendor/quill/js/quill.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/stepper/js/bs-stepper.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/overlay-scrollbar/js/overlayscrollbars.min.js' %}"></script>
+
 
     <!-- Template Functions -->
     <script src="{% static 'assets/js/functions.js' %}"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/choices.js/10.0.0/js/choices.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialize Choices plugin
+            const selectElement = document.getElementById('it-skills');
+            const choices = new Choices(selectElement, {
+                removeItemButton: true
+            });
+
+            // Load selected IT skills from localStorage if available
+            const selectedSkills = JSON.parse(localStorage.getItem('selectedSkills')) || [];
+            selectedSkills.forEach(skill => {
+                choices.setChoiceByValue(skill);
+            });
+
+            // Save selected IT skills to localStorage when selection changes
+            selectElement.addEventListener('change', function () {
+                const selectedValues = choices.getValue(true);
+                localStorage.setItem('selectedSkills', JSON.stringify(selectedValues));
+            });
+        });
+    </script>
 
 </body>
 

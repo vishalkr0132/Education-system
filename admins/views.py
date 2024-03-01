@@ -7,6 +7,7 @@ from django.contrib import messages
 from admins.models import signup
 from Home.models import students_sign_up
 from django.contrib.auth.models import Group
+from students.models import *
 
 # Create your views here.
      
@@ -16,15 +17,6 @@ def logout_view(request):
 
 def forgot_password(request):
     return render(request,'forgot-password.html')
-
-# def admin_dashboard(request):
-#     if request.user.is_anonymous:
-#         return redirect('/')
-#     else:
-#         username = request.user.username
-#         Admin = signup.objects.filter(Email=username)
-#         context = {'Admin': Admin}
-#         return render(request, 'admin-dashboard.html', context)
 
 def admin_dashboard(request):
     if request.user.is_anonymous:
@@ -74,7 +66,10 @@ def admin_student_detail(request, Pid):
         # email = students_sign_up.objects.get(id=Pid)
         # email = email.Email
         detail = students_sign_up.objects.filter(id=Pid)
-        data = {'detail': detail}
+        username = students_sign_up.objects.get(id=Pid)
+        username = username.user
+        education_data  = Educationdata.objects.get(user=username)
+        data = {'detail': detail, 'education_data':education_data }
         return render(request, 'admin-student-detail.html', data)
     
 def admin_course_list(request):

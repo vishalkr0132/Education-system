@@ -179,10 +179,10 @@
                                     <!--End First Name-->
 									<!--Last Name-->
 									<div class="mb-4">
-                                        <label for="exampleInputEmail1" class="form-label">Last Name </label>
+                                        <label for="exampleInputEmail1" class="form-label">Last Name</label>
                                         <div class="input-group input-group-lg">
-                                            <span class="input-group-text bg-light rounded-start border-0 text-secondary px-3"><i class="bi bi-envelope-fill"></i></span>
-                                            <input type="text" class="form-control border-0 bg-light rounded-end ps-1" placeholder="Last Name" id="exampleInputEmail1" name='Last_Name'>
+                                            <span class="input-group-text bg-light rounded-start border-0 text-secondary px-3"><i class="bi bi-person-circle"></i></span>
+                                            <input type="text" class="form-control border-0 bg-light rounded-end ps-1" placeholder="Last Name" name="Last_Name" id="exampleInputEmail2" />
                                         </div>
                                     </div>
 									<!--End Last name-->
@@ -191,7 +191,7 @@
                                         <label for="exampleInputEmail1" class="form-label">Mobile Number *</label>
                                         <div class="input-group input-group-lg">
                                             <span class="input-group-text bg-light rounded-start border-0 text-secondary px-3"><i class="bi bi-telephone"></i></span>
-                                            <input type="number" class="form-control border-0 bg-light rounded-end ps-1" placeholder="Mobile Number" id="exampleInputEmail1" name='Mobile' required="">
+                                            <input type="number" class="form-control border-0 bg-light rounded-end ps-1" placeholder="Mobile Number" id="mobileNumberInput" name="Mobile" required>
                                         </div>
                                     </div>
 									<!--End mobile-->
@@ -268,12 +268,65 @@
     <!-- Back to top -->
     <div class="back-top"><i class="bi bi-arrow-up-short position-absolute top-50 start-50 translate-middle"></i></div>
 
+    <script>
+        function validateMobileNumber() {
+            var mobileNumber = document.getElementById("mobileNumberInput").value;
+        
+            // Check if mobile number is exactly 10 digits and starts with 6, 7, 8, or 9
+            if (/^[6-9]\d{9}$/.test(mobileNumber)) {
+                alert("Mobile number is valid!");
+                // You can do further processing here if needed
+            } else {
+                alert("Please enter a valid 10-digit mobile number starting with 6, 7, 8, or 9.");
+            }
+        }
+        </script>
+        
     <!-- Bootstrap JS -->
     <script src="{% static '/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
 
     <!-- Template Functions -->
     <script src="{% static '/assets/js/functions.js' %}"></script>
     <script src="{% static '/assets/js/custom.js' %}"></script>
+    <script>
+        document.getElementById('exampleInputEmail1').addEventListener('input', function(event) {
+            var inputValue = event.target.value;
+            var regex = /^[a-zA-Z]*$/; // Regular expression to allow only characters
+            if (!regex.test(inputValue)) {
+                event.target.value = inputValue.replace(/[^a-zA-Z]/g, ''); // Remove any characters that are not letters
+            }
+      });
+      </script>
+      <script>
+        document.getElementById('exampleInputEmail2').addEventListener('input', function(event) {
+            var inputValue = event.target.value;
+            var regex = /^[a-zA-Z]*$/; // Regular expression to allow only characters
+            if (!regex.test(inputValue)) {
+                event.target.value = inputValue.replace(/[^a-zA-Z]/g, ''); // Remove any characters that are not letters
+            }
+    });
+      </script>
+
+      <script>
+        document.getElementById("mobileNumberInput").addEventListener("input", function() {
+            var maxLength = 10;
+            var input = document.getElementById("mobileNumberInput");
+            var inputValue = input.value.trim();
+        
+            // Check if input length exceeds maximum length
+            if (inputValue.length > maxLength) {
+                input.value = inputValue.slice(0, maxLength); // Trim input to maximum length
+            }
+        
+            // Check if first digit is 6, 7, 8, or 9
+            var firstDigit = inputValue.charAt(0);
+            if (!['6', '7', '8', '9'].includes(firstDigit)) {
+                //alert("First digit must be 6, 7, 8, or 9.");
+                input.value = ''; // Clear input field
+            }
+        });
+        </script>
+      
 
 </body>
 

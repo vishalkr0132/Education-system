@@ -18,6 +18,9 @@ def logout_view(request):
 def forgot_password(request):
     return render(request,'forgot-password.html')
 
+def admin_profile(request):
+    return render(request,'admin-profile.html')
+
 def admin_dashboard(request):
     if request.user.is_anonymous:
         return redirect('/')

@@ -230,6 +230,9 @@ def student_profile(request):
         try:
             # profile = students_sign_up.objects.filter(Email=username)
             profile = students_sign_up.objects.filter(user=request.user)
+            profile_photo = students_sign_up.objects.filter(Email=username).first().Profile_Pic
+            if profile_photo =="":
+                profile_photo = "01.jpg"
         except students_sign_up.DoesNotExist:
             profile = None
         context = {

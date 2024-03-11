@@ -11,6 +11,7 @@ urlpatterns = [
     path('student_profile', views.student_profile, name='student_profile'),
     path('admin_student_list', views.admin_student_list, name='admin_student_list'),
     path('logout/', logout_view, name='logout'),
+    path('forgot_password',views.forgot_password, name='forgot_password'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

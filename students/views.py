@@ -253,3 +253,6 @@ def student_profile(request):
 def logout_view(request):
     logout(request)
     return redirect('/')
+
+def forgot_password(request):
+    return redirect(request ,'forgot-password.html')

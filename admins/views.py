@@ -8,6 +8,9 @@ from admins.models import signup
 from Home.models import students_sign_up
 from django.contrib.auth.models import Group
 from students.models import *
+from .send_email import email_sending
+
+
 
 # Create your views here.
      
@@ -49,10 +52,11 @@ def admin_instructor_list(request):
         return render(request,'admin-instructor-list.html')
 
 def admin_instructor_request(request):
+    data = User.objects.filter(is_active=False)
     if request.user.is_anonymous:
         return redirect('/')
     else:
-        return render(request,'admin-instructor-request.html')
+        return render(request,'admin-instructor-request.html', {'data':data})
 
 def admin_student_list(request):
     if request.user.is_anonymous:
@@ -110,3 +114,20 @@ def admin_college_list(request):
         return redirect('/')
     else:
         return render(request,'admin-college-list.html')
+
+
+def activate(request, PID):
+    user = User.objects.get(id=PID)
+    user.is_active = True
+    msg = "Your Account has been activated"
+    email_sending(user.email, msg)
+    user.save()
+    return redirect('/admins/admin_instructor_request')
+
+def reject(request, PID):
+    user = User.objects.get(id=PID)
+    msg = "Your Account has been rejected"
+    email_sending(user.email, msg)
+    user.delete()
+    return redirect('/admin/admin_instructor_request')
+

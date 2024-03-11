@@ -9,6 +9,8 @@ from django.contrib.auth.models import Group
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
 from django.utils import timezone
+from .send_email import email_sending
+import random
 
 # Create your views here.
 def loginuser(request):
@@ -192,6 +194,7 @@ def instructor_sign_up(request):
         Instructor_Register.save()
         
         user = User.objects.create_user(Email,Email,Password)
+        user.is_active = False
         user.save()
         messages.success(request, 'Registration successful. You can now log in.')
         return redirect('/instructor_sign_in')
@@ -222,4 +225,26 @@ def partners_sign_up(request):
         return render(request,'partners-sign-up.html')
 
 def forgot_password(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        msg = random.randint(000000, 999999 )
+        email_sending(email, str(msg))     
+        return render(request, 'change_password.html', {'msg':msg, 'email':email} )   
     return render(request,'forgot-password.html')
+
+def change_password(request):
+    if request.method == 'POST':
+        otp_val = request.POST.get('otp_ver')
+        otp = request.POST.get('otp')
+        password = request.POST.get('password')
+        email = request.POST.get('email')
+        if otp == otp_val:
+            user = User.objects.get(email=email)
+            user.set_password(password)
+            user.save()
+            return redirect('/student_sign_in')
+        else:
+            return HttpResponse("OTP DIdnt Match")
+    else:
+        return redirect('/student_sign_in')
+    

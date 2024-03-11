@@ -70,6 +70,7 @@
 						<!-- Table body START -->
 						<tbody>
 							<!-- Table row -->
+							{% for i in data %}
 							<tr>
 								<!-- Table data -->
 								<td>
@@ -80,7 +81,7 @@
 										</div>
 										<div class="mb-0 ms-2">
 											<!-- Title -->
-											<h6 class="mb-0"><a href="#" class="stretched-link">Lori Stevens</a></h6>
+											<h6 class="mb-0"><a href="#" class="stretched-link">{{i.username}}</a></h6>
 										</div>
 									</div>
 								</td>
@@ -89,19 +90,20 @@
 								<td class="text-center text-sm-start">
 									<h6 class="mb-0">HTML, css, bootstrap</h6>
 								</td>
-
+								
 								<!-- Table data -->
 								<td>22 Oct 2021</td>
 
 								<!-- Table data -->
 								<td>
-									<a href="#" class="btn btn-success-soft me-1 mb-1 mb-lg-0">Accept</a>
-									<a href="#" class="btn btn-secondary-soft me-1 mb-1 mb-lg-0">Reject</a>
+									<a href="activate/{{i.id}}" class="btn btn-success-soft me-1 mb-1 mb-lg-0">Accept</a>
+									<a href="rejecct/{{i.id}}" class="btn btn-secondary-soft me-1 mb-1 mb-lg-0">Reject</a>
 									<a href="#" class="btn btn-primary-soft me-1 mb-0" data-bs-toggle="modal" data-bs-target="#appDetail">View App</a>
 								</td>
 							</tr>
-
-							<!-- Table row -->
+							
+							{% endfor %}
+							{% comment %} <!-- Table row -->
 							<tr>
 								<!-- Table data -->
 								<td>
@@ -131,9 +133,9 @@
 									<a href="#" class="btn btn-secondary-soft me-1 mb-1 mb-lg-0">Reject</a>
 									<a href="#" class="btn btn-primary-soft me-1 mb-0" data-bs-toggle="modal" data-bs-target="#appDetail">View App</a>
 								</td>
-							</tr>
+							</tr> {% endcomment %}
 
-							<!-- Table row -->
+							{% comment %} <!-- Table row -->
 							<tr>
 								<!-- Table data -->
 								<td>
@@ -287,7 +289,7 @@
 									<a href="#" class="btn btn-secondary me-1 mb-1 mb-md-0 disabled">Rejected</a>
 									<a href="#" class="btn btn-primary-soft me-1 mb-0" data-bs-toggle="modal" data-bs-target="#appDetail">View App</a>
 								</td>
-							</tr>
+							</tr> {% endcomment %}
 
 						</tbody>
 						<!-- Table body END -->
